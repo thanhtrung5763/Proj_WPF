@@ -312,7 +312,7 @@ namespace QuanLiKhachSan
             this.panelMngRoom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMngRoom.Location = new System.Drawing.Point(0, 0);
             this.panelMngRoom.Name = "panelMngRoom";
-            this.panelMngRoom.Size = new System.Drawing.Size(1702, 1028);
+            this.panelMngRoom.Size = new System.Drawing.Size(1688, 1028);
             this.panelMngRoom.TabIndex = 44;
             // 
             // ManageRoomsForm
@@ -320,7 +320,7 @@ namespace QuanLiKhachSan
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1702, 1028);
+            this.ClientSize = new System.Drawing.Size(1688, 1028);
             this.Controls.Add(this.panelMngRoom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ManageRoomsForm";

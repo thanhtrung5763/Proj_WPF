@@ -34,6 +34,8 @@ namespace QuanLiKhachSan
             {
                 this.mngRooms_BT.FillColor = Color.Transparent;
                 this.mngRooms_BT.FillColor2 = Color.Transparent;
+                this.mngSchedules_BT.FillColor = Color.Transparent;
+                this.mngSchedules_BT.FillColor2 = Color.Transparent;
 
                 this.employ_BT.FillColor = Color.FromArgb(0, 192, 192);
                 this.employ_BT.FillColor2 = Color.Teal;
@@ -62,6 +64,8 @@ namespace QuanLiKhachSan
             {
                 this.employ_BT.FillColor = Color.Transparent;
                 this.employ_BT.FillColor2 = Color.Transparent;
+                this.mngSchedules_BT.FillColor = Color.Transparent;
+                this.mngSchedules_BT.FillColor2 = Color.Transparent;
 
                 this.mngRooms_BT.FillColor = Color.FromArgb(0, 192, 192);
                 this.mngRooms_BT.FillColor2 = Color.Teal;
@@ -71,6 +75,35 @@ namespace QuanLiKhachSan
             {
                 this.mngRooms_BT.FillColor = Color.Transparent;
                 this.mngRooms_BT.FillColor2 = Color.Transparent;
+            }
+        }
+
+        private void mngSchedules_BT_Click(object sender, EventArgs e)
+        {
+            ManageSchedulesForm frm = new ManageSchedulesForm();
+            this.Width = 1080;
+            this.Height = 420;
+            frm.MdiParent = this.ParentForm;
+            frm.TopLevel = false;
+            panel2.Controls.Clear();
+            panel2.Controls.Add(frm);
+            frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            if (this.mngSchedules_BT.FillColor == Color.Transparent && this.mngSchedules_BT.FillColor2 == Color.Transparent)
+            {
+                this.employ_BT.FillColor = Color.Transparent;
+                this.employ_BT.FillColor2 = Color.Transparent;
+                this.mngRooms_BT.FillColor = Color.Transparent;
+                this.mngRooms_BT.FillColor2 = Color.Transparent;
+
+                this.mngSchedules_BT.FillColor = Color.FromArgb(0, 192, 192);
+                this.mngSchedules_BT.FillColor2 = Color.Teal;
+                frm.Show();
+            }
+            else
+            {
+                this.mngSchedules_BT.FillColor = Color.Transparent;
+                this.mngSchedules_BT.FillColor2 = Color.Transparent;
             }
         }
     }

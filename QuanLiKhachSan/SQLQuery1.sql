@@ -134,12 +134,59 @@ Select room_capacity, room_num_beds, room_price
 --
 --END ROOMS
 
-DBCC CHECKIDENT ('Employees', RESEED, 0)  
-DBCC CHECKIDENT ('Accounts', RESEED, 0)  
+DBCC CHECKIDENT ('Employees', RESEED, 1)  
+DBCC CHECKIDENT ('Accounts', RESEED, 1)  
 INSERT INTO Accounts VALUES ('admin', 1)
 INSERT INTO EmployeeAccounts VALUES(1, 1)
 INSERT INTO Employees VALUES ('Thanh', 'Trung', 'thanhtrung5763@gmail.com', 'Male', '2001-10-19', '2021-04-06', 'Admin', NULL, 'BH', NULL, '576-245-123')
+INSERT INTO Accounts VALUES ('t', 1)
+INSERT INTO EmployeeAccounts VALUES(3, 3)
+
+INSERT INTO Employees VALUES ('Tuan', 'Tran', 'tuant3883@gmail.com', 'Male', '2001-10-19', '2021-04-06', 'Janitor', NULL, 'BH', 0xFFD8FFE000104A46494600010101000000000000FFE100764578696600004D4D002A00000008000187690004000000010000001A00000000000192860007000000420000002C00000000554E49434F4445000043006F006D00700072006500730073006500640020006200790020006A007000650067002D007200650063006F, '574-243-183')
 
 Select Rooms.room_type_id, room_type_name From Rooms, RoomTypes Where Rooms.room_type_id = RoomTypes.room_type_id;
 Delete From Rooms Where room_type_id = 7
 Delete From RoomTypes Where room_type_name = 'President'
+
+
+Create Table dbo.Shifts (
+	shift_id INT  NOT NULL,
+	shift_name NVARCHAR(30) NULL,
+	time_start Time NULL,
+	time_end Time NULL,
+	num_manager INT NULL,
+	num_receptionist INT NULL,
+	num_janitor INT NULL
+
+	CONSTRAINT [PK_Shifts] PRIMARY KEY CLUSTERED ([shift_id] ASC)
+)
+GO
+
+
+Select * From Employees Where title='Manager'
+
+Create Table dbo.Schedules (
+	schedule_id INT NOT NULL,
+	shift_id INT NOT NULL,
+	emp_id INT NOT NULL,
+	firstname NVarChar(20) NULL,
+	lastname NVarChar(20) NULL,
+	title NVarChar(30) NULL,
+	date_start DateTime NULL,
+	date_end DateTime NULL,
+	Monday NVarChar(20) NUll,
+	Tuesday NVarChar(20) NUll,
+	Wednesday NVarChar(20) NUll,
+	Thursday NVarChar(20) NUll,
+	Friday NVarChar(20) NUll,
+	Saturday NVarChar(20) NUll,
+	Sunday NVarChar(20) NUll,
+
+)
+GO
+Delete From dbo.Schedules
+DROP TAble dbo.Schedules
+
+Select * From dbo.Schedules
+
+Select Count(distinct schedule_id) From dbo.Schedules

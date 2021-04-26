@@ -33,7 +33,7 @@ namespace QuanLiKhachSan
             this.panel1 = new System.Windows.Forms.Panel();
             this.guna2GradientButton3 = new Guna.UI2.WinForms.Guna2GradientButton();
             this.mngRooms_BT = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.mngSchedules_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.employ_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.guna2ControlBox3 = new Guna.UI2.WinForms.Guna2ControlBox();
@@ -49,7 +49,7 @@ namespace QuanLiKhachSan
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(36)))), ((int)(((byte)(39)))));
             this.panel1.Controls.Add(this.guna2GradientButton3);
             this.panel1.Controls.Add(this.mngRooms_BT);
-            this.panel1.Controls.Add(this.guna2GradientButton1);
+            this.panel1.Controls.Add(this.mngSchedules_BT);
             this.panel1.Controls.Add(this.employ_BT);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 68);
@@ -94,23 +94,24 @@ namespace QuanLiKhachSan
             this.mngRooms_BT.Text = "Manage Rooms";
             this.mngRooms_BT.Click += new System.EventHandler(this.mngRooms_BT_Click);
             // 
-            // guna2GradientButton1
+            // mngSchedules_BT
             // 
-            this.guna2GradientButton1.CheckedState.Parent = this.guna2GradientButton1;
-            this.guna2GradientButton1.CustomImages.Parent = this.guna2GradientButton1;
-            this.guna2GradientButton1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2GradientButton1.FillColor2 = System.Drawing.Color.Transparent;
-            this.guna2GradientButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2GradientButton1.ForeColor = System.Drawing.Color.White;
-            this.guna2GradientButton1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.guna2GradientButton1.HoverState.FillColor2 = System.Drawing.Color.Teal;
-            this.guna2GradientButton1.HoverState.Parent = this.guna2GradientButton1;
-            this.guna2GradientButton1.Location = new System.Drawing.Point(0, 307);
-            this.guna2GradientButton1.Name = "guna2GradientButton1";
-            this.guna2GradientButton1.ShadowDecoration.Parent = this.guna2GradientButton1;
-            this.guna2GradientButton1.Size = new System.Drawing.Size(466, 68);
-            this.guna2GradientButton1.TabIndex = 6;
-            this.guna2GradientButton1.Text = "title2";
+            this.mngSchedules_BT.CheckedState.Parent = this.mngSchedules_BT;
+            this.mngSchedules_BT.CustomImages.Parent = this.mngSchedules_BT;
+            this.mngSchedules_BT.FillColor = System.Drawing.Color.Transparent;
+            this.mngSchedules_BT.FillColor2 = System.Drawing.Color.Transparent;
+            this.mngSchedules_BT.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.mngSchedules_BT.ForeColor = System.Drawing.Color.White;
+            this.mngSchedules_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.mngSchedules_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
+            this.mngSchedules_BT.HoverState.Parent = this.mngSchedules_BT;
+            this.mngSchedules_BT.Location = new System.Drawing.Point(0, 307);
+            this.mngSchedules_BT.Name = "mngSchedules_BT";
+            this.mngSchedules_BT.ShadowDecoration.Parent = this.mngSchedules_BT;
+            this.mngSchedules_BT.Size = new System.Drawing.Size(466, 68);
+            this.mngSchedules_BT.TabIndex = 6;
+            this.mngSchedules_BT.Text = "Manage Schedules";
+            this.mngSchedules_BT.Click += new System.EventHandler(this.mngSchedules_BT_Click);
             // 
             // employ_BT
             // 
@@ -217,7 +218,7 @@ namespace QuanLiKhachSan
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton3;
         private Guna.UI2.WinForms.Guna2GradientButton mngRooms_BT;
-        private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton1;
+        private Guna.UI2.WinForms.Guna2GradientButton mngSchedules_BT;
 
         #endregion
         //private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;

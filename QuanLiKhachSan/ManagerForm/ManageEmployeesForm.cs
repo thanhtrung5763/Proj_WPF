@@ -146,7 +146,7 @@ namespace QuanLiKhachSan
                 addressT2_TB.Text = employee_DGV.CurrentRow.Cells[9].Value.ToString();
                 phoneT2_TB.Text = employee_DGV.CurrentRow.Cells[11].Value.ToString();
                 byte[] pic;
-                pic = (byte[])employee_DGV.Rows[0].Cells[10].Value;
+                pic = (byte[])employee_DGV.CurrentRow.Cells[10].Value;
                 MemoryStream picture = new MemoryStream(pic);
                 photoT2_PB.Image = Image.FromStream(picture);
             }

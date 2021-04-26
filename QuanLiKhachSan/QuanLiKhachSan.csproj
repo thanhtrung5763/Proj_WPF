@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="automaticShiftForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="automaticShiftForm.Designer.cs">
+      <DependentUpon>automaticShiftForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Class\Account.cs" />
     <Compile Include="ManagerForm\EditDeleteEmployeeForm.cs">
       <SubType>Form</SubType>
@@ -76,6 +82,12 @@
     </Compile>
     <Compile Include="ManagerForm\ManageRoomTypesForm.Designer.cs">
       <DependentUpon>ManageRoomTypesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageSchedulesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageSchedulesForm.Designer.cs">
+      <DependentUpon>ManageSchedulesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ReceptionistForm\ReceptionistForm.cs">
       <SubType>Form</SubType>
@@ -105,6 +117,11 @@
       <DependentUpon>ManageEmployeesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\Room.cs" />
+    <Compile Include="Schedule.cs" />
+    <Compile Include="Shift.cs" />
+    <EmbeddedResource Include="automaticShiftForm.resx">
+      <DependentUpon>automaticShiftForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManagerForm\EditDeleteEmployeeForm.resx">
       <DependentUpon>EditDeleteEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerForm\ManageRoomTypesForm.resx">
       <DependentUpon>ManageRoomTypesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageSchedulesForm.resx">
+      <DependentUpon>ManageSchedulesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

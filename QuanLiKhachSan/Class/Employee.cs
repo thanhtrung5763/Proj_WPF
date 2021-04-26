@@ -104,5 +104,22 @@ namespace QuanLiKhachSan
             da.Fill(dt);
             return dt;
         }
+        public int countEmployeesByTitle(string title)
+        {
+            SqlCommand com = new SqlCommand("Select Count(*) From Employees Where title=@tle", mydb.getConnection);
+            com.Parameters.Add("@tle", SqlDbType.NVarChar).Value = title;
+            mydb.openConnection();
+            int res = (int)com.ExecuteScalar();
+            mydb.closeConnection();
+            return res;
+        }
+        public int numOfEmployees()
+        {
+            SqlCommand com = new SqlCommand("Select Count(*) From Employees ", mydb.getConnection);
+            mydb.openConnection();
+            int res = (int)com.ExecuteScalar();
+            mydb.closeConnection();
+            return res;
+        }
     }
 }

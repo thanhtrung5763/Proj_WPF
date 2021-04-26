@@ -31,7 +31,8 @@ namespace QuanLiKhachSan
             roomType_DGV.Columns[2].HeaderText = "Capacity";
             roomType_DGV.Columns[3].HeaderText = "Bed";
             roomType_DGV.Columns[4].HeaderText = "Price";
-            roomType_DGV_CellMouseClick(null, null);
+            if (roomType_DGV.Rows.Count > 0)
+                roomType_DGV_CellMouseClick(null, null);
         }
 
 
