@@ -37,8 +37,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
+    <Reference Include="Guna.UI">
+      <HintPath>D:\LapTrinhWindows\_Getintopc.com_Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
+    </Reference>
     <Reference Include="Guna.UI2">
-      <HintPath>..\..\..\..\Desktop\Guna\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+      <HintPath>D:\LapTrinhWindows\_Getintopc.com_Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -57,13 +60,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="automaticShiftForm.cs">
+    <Compile Include="Class\Check_in_out.cs" />
+    <Compile Include="ManagerForm\Check_in_outForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="automaticShiftForm.Designer.cs">
-      <DependentUpon>automaticShiftForm.cs</DependentUpon>
+    <Compile Include="ManagerForm\Check_in_outForm.designer.cs">
+      <DependentUpon>Check_in_outForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\Account.cs" />
+    <Compile Include="Class\Schedule.cs" />
+    <Compile Include="Class\Shift.cs" />
+    <Compile Include="Class\SlqCommand.cs" />
+    <Compile Include="ManagerForm\automaticShiftForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerForm\automaticShiftForm.Designer.cs">
+      <DependentUpon>automaticShiftForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManagerForm\EditDeleteEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,10 +96,10 @@
     <Compile Include="ManagerForm\ManageRoomTypesForm.Designer.cs">
       <DependentUpon>ManageRoomTypesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageSchedulesForm.cs">
+    <Compile Include="ManagerForm\ManageSchedulesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageSchedulesForm.Designer.cs">
+    <Compile Include="ManagerForm\ManageSchedulesForm.Designer.cs">
       <DependentUpon>ManageSchedulesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ReceptionistForm\ReceptionistForm.cs">
@@ -117,9 +130,10 @@
       <DependentUpon>ManageEmployeesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\Room.cs" />
-    <Compile Include="Schedule.cs" />
-    <Compile Include="Shift.cs" />
-    <EmbeddedResource Include="automaticShiftForm.resx">
+    <EmbeddedResource Include="ManagerForm\Check_in_outForm.resx">
+      <DependentUpon>Check_in_outForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerForm\automaticShiftForm.resx">
       <DependentUpon>automaticShiftForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerForm\EditDeleteEmployeeForm.resx">
@@ -137,7 +151,7 @@
     <EmbeddedResource Include="ManagerForm\ManageRoomTypesForm.resx">
       <DependentUpon>ManageRoomTypesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageSchedulesForm.resx">
+    <EmbeddedResource Include="ManagerForm\ManageSchedulesForm.resx">
       <DependentUpon>ManageSchedulesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -183,6 +197,7 @@
     <Content Include="Icon\02.jpg" />
     <Content Include="Icon\03.jpg" />
     <Content Include="Icon\04.jpg" />
+    <Content Include="Icon\report-icon-13315.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

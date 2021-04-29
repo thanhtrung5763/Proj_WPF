@@ -31,7 +31,7 @@ namespace QuanLiKhachSan
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.guna2GradientButton3 = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.Check_in_out_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.mngRooms_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.mngSchedules_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.employ_BT = new Guna.UI2.WinForms.Guna2GradientButton();
@@ -47,33 +47,36 @@ namespace QuanLiKhachSan
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(36)))), ((int)(((byte)(39)))));
-            this.panel1.Controls.Add(this.guna2GradientButton3);
+            this.panel1.Controls.Add(this.Check_in_out_BT);
             this.panel1.Controls.Add(this.mngRooms_BT);
             this.panel1.Controls.Add(this.mngSchedules_BT);
             this.panel1.Controls.Add(this.employ_BT);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 68);
+            this.panel1.Location = new System.Drawing.Point(0, 44);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(466, 962);
+            this.panel1.Size = new System.Drawing.Size(311, 615);
             this.panel1.TabIndex = 1;
             // 
-            // guna2GradientButton3
+            // Check_in_out_BT
             // 
-            this.guna2GradientButton3.CheckedState.Parent = this.guna2GradientButton3;
-            this.guna2GradientButton3.CustomImages.Parent = this.guna2GradientButton3;
-            this.guna2GradientButton3.FillColor = System.Drawing.Color.Transparent;
-            this.guna2GradientButton3.FillColor2 = System.Drawing.Color.Transparent;
-            this.guna2GradientButton3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2GradientButton3.ForeColor = System.Drawing.Color.White;
-            this.guna2GradientButton3.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.guna2GradientButton3.HoverState.FillColor2 = System.Drawing.Color.Teal;
-            this.guna2GradientButton3.HoverState.Parent = this.guna2GradientButton3;
-            this.guna2GradientButton3.Location = new System.Drawing.Point(0, 413);
-            this.guna2GradientButton3.Name = "guna2GradientButton3";
-            this.guna2GradientButton3.ShadowDecoration.Parent = this.guna2GradientButton3;
-            this.guna2GradientButton3.Size = new System.Drawing.Size(466, 68);
-            this.guna2GradientButton3.TabIndex = 8;
-            this.guna2GradientButton3.Text = "title3";
+            this.Check_in_out_BT.CheckedState.Parent = this.Check_in_out_BT;
+            this.Check_in_out_BT.CustomImages.Parent = this.Check_in_out_BT;
+            this.Check_in_out_BT.FillColor = System.Drawing.Color.Transparent;
+            this.Check_in_out_BT.FillColor2 = System.Drawing.Color.Transparent;
+            this.Check_in_out_BT.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Check_in_out_BT.ForeColor = System.Drawing.Color.White;
+            this.Check_in_out_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.Check_in_out_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
+            this.Check_in_out_BT.HoverState.Parent = this.Check_in_out_BT;
+            this.Check_in_out_BT.Location = new System.Drawing.Point(0, 264);
+            this.Check_in_out_BT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Check_in_out_BT.Name = "Check_in_out_BT";
+            this.Check_in_out_BT.ShadowDecoration.Parent = this.Check_in_out_BT;
+            this.Check_in_out_BT.Size = new System.Drawing.Size(311, 44);
+            this.Check_in_out_BT.TabIndex = 8;
+            this.Check_in_out_BT.Text = "Check In-Out";
+            this.Check_in_out_BT.Click += new System.EventHandler(this.Check_in_out_BT_Click);
             // 
             // mngRooms_BT
             // 
@@ -86,10 +89,11 @@ namespace QuanLiKhachSan
             this.mngRooms_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.mngRooms_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
             this.mngRooms_BT.HoverState.Parent = this.mngRooms_BT;
-            this.mngRooms_BT.Location = new System.Drawing.Point(0, 193);
+            this.mngRooms_BT.Location = new System.Drawing.Point(0, 124);
+            this.mngRooms_BT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.mngRooms_BT.Name = "mngRooms_BT";
             this.mngRooms_BT.ShadowDecoration.Parent = this.mngRooms_BT;
-            this.mngRooms_BT.Size = new System.Drawing.Size(466, 68);
+            this.mngRooms_BT.Size = new System.Drawing.Size(311, 44);
             this.mngRooms_BT.TabIndex = 7;
             this.mngRooms_BT.Text = "Manage Rooms";
             this.mngRooms_BT.Click += new System.EventHandler(this.mngRooms_BT_Click);
@@ -105,10 +109,11 @@ namespace QuanLiKhachSan
             this.mngSchedules_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.mngSchedules_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
             this.mngSchedules_BT.HoverState.Parent = this.mngSchedules_BT;
-            this.mngSchedules_BT.Location = new System.Drawing.Point(0, 307);
+            this.mngSchedules_BT.Location = new System.Drawing.Point(0, 196);
+            this.mngSchedules_BT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.mngSchedules_BT.Name = "mngSchedules_BT";
             this.mngSchedules_BT.ShadowDecoration.Parent = this.mngSchedules_BT;
-            this.mngSchedules_BT.Size = new System.Drawing.Size(466, 68);
+            this.mngSchedules_BT.Size = new System.Drawing.Size(311, 44);
             this.mngSchedules_BT.TabIndex = 6;
             this.mngSchedules_BT.Text = "Manage Schedules";
             this.mngSchedules_BT.Click += new System.EventHandler(this.mngSchedules_BT_Click);
@@ -125,10 +130,11 @@ namespace QuanLiKhachSan
             this.employ_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.employ_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
             this.employ_BT.HoverState.Parent = this.employ_BT;
-            this.employ_BT.Location = new System.Drawing.Point(0, 90);
+            this.employ_BT.Location = new System.Drawing.Point(0, 58);
+            this.employ_BT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.employ_BT.Name = "employ_BT";
             this.employ_BT.ShadowDecoration.Parent = this.employ_BT;
-            this.employ_BT.Size = new System.Drawing.Size(466, 68);
+            this.employ_BT.Size = new System.Drawing.Size(311, 44);
             this.employ_BT.TabIndex = 5;
             this.employ_BT.Text = "Manage Employees";
             this.employ_BT.Click += new System.EventHandler(this.employ_BT_Click_1);
@@ -138,9 +144,10 @@ namespace QuanLiKhachSan
             this.panel2.AutoSize = true;
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(466, 68);
+            this.panel2.Location = new System.Drawing.Point(311, 44);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(980, 962);
+            this.panel2.Size = new System.Drawing.Size(653, 615);
             this.panel2.TabIndex = 2;
             // 
             // guna2ControlBox3
@@ -152,10 +159,11 @@ namespace QuanLiKhachSan
             this.guna2ControlBox3.FillColor = System.Drawing.Color.Transparent;
             this.guna2ControlBox3.HoverState.Parent = this.guna2ControlBox3;
             this.guna2ControlBox3.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox3.Location = new System.Drawing.Point(1349, 16);
+            this.guna2ControlBox3.Location = new System.Drawing.Point(899, 10);
+            this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2ControlBox3.Name = "guna2ControlBox3";
             this.guna2ControlBox3.ShadowDecoration.Parent = this.guna2ControlBox3;
-            this.guna2ControlBox3.Size = new System.Drawing.Size(44, 36);
+            this.guna2ControlBox3.Size = new System.Drawing.Size(29, 23);
             this.guna2ControlBox3.TabIndex = 18;
             // 
             // guna2ControlBox2
@@ -166,10 +174,11 @@ namespace QuanLiKhachSan
             this.guna2ControlBox2.FillColor = System.Drawing.Color.Transparent;
             this.guna2ControlBox2.HoverState.Parent = this.guna2ControlBox2;
             this.guna2ControlBox2.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox2.Location = new System.Drawing.Point(1390, 16);
+            this.guna2ControlBox2.Location = new System.Drawing.Point(927, 10);
+            this.guna2ControlBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2ControlBox2.Name = "guna2ControlBox2";
             this.guna2ControlBox2.ShadowDecoration.Parent = this.guna2ControlBox2;
-            this.guna2ControlBox2.Size = new System.Drawing.Size(44, 36);
+            this.guna2ControlBox2.Size = new System.Drawing.Size(29, 23);
             this.guna2ControlBox2.TabIndex = 19;
             // 
             // guna2GradientPanel1
@@ -180,26 +189,27 @@ namespace QuanLiKhachSan
             this.guna2GradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.Teal;
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
+            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.ShadowDecoration.Parent = this.guna2GradientPanel1;
-            this.guna2GradientPanel1.Size = new System.Drawing.Size(1446, 68);
+            this.guna2GradientPanel1.Size = new System.Drawing.Size(964, 44);
             this.guna2GradientPanel1.TabIndex = 3;
             // 
             // guna2Elipse1
             // 
-            this.guna2Elipse1.BorderRadius = 17;
             this.guna2Elipse1.TargetControl = this;
             // 
             // ManagerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1446, 1030);
+            this.ClientSize = new System.Drawing.Size(964, 659);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.guna2GradientPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "ManagerForm";
@@ -216,7 +226,7 @@ namespace QuanLiKhachSan
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
         private Guna.UI2.WinForms.Guna2GradientButton employ_BT;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
-        private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton3;
+        private Guna.UI2.WinForms.Guna2GradientButton Check_in_out_BT;
         private Guna.UI2.WinForms.Guna2GradientButton mngRooms_BT;
         private Guna.UI2.WinForms.Guna2GradientButton mngSchedules_BT;
 

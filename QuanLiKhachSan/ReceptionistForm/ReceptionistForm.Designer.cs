@@ -184,7 +184,7 @@ namespace QuanLiKhachSan
             // 
             // guna2Elipse1
             // 
-            this.guna2Elipse1.BorderRadius = 17;
+            //this.guna2Elipse1.BorderRadius = 17;
             // 
             // ReceptionistForm
             // 

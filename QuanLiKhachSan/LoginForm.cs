@@ -29,17 +29,19 @@ namespace QuanLiKhachSan
         {
             if(radioManager.Checked)
             {
-                Application.Run(new ManagerForm());
+                Application.Run(new ManagerForm(username_TB.Text.ToString()));
             }
             else if(radioEmp.Checked)
             {
                 Application.Run(new ReceptionistForm());
             }
         }
+    
 
         private void login_BT_Click(object sender, EventArgs e)
         {
             MY_DB db = new MY_DB();
+            Check_in_out ck = new Check_in_out();
             SqlDataAdapter da = new SqlDataAdapter();
             DataTable dt = new DataTable();
             SqlCommand com = new SqlCommand("SELECT * FROM Accounts, Employees, EmployeeAccounts WHERE username=@user AND password=@pass AND Accounts.acc_id = EmployeeAccounts.acc_id AND Employees.emp_id = EmployeeAccounts.emp_id", db.getConnection);
@@ -60,12 +62,14 @@ namespace QuanLiKhachSan
             if (dt.Rows.Count > 0)
             {
                 MessageBox.Show("Login Successful");
-                this.DialogResult = DialogResult.OK;
+                this.DialogResult = DialogResult.OK; 
             }
             else
             {
                 MessageBox.Show("Invalid Username Or Password", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+           
+            
         }
     }
 }
