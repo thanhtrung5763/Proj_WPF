@@ -21,32 +21,71 @@ namespace QuanLiKhachSan
         }
         MY_DB myDB = new MY_DB();
         Check_in_out ck = new Check_in_out();
-
+        Shift sh = new Shift();
+        Schedule sch = new Schedule();
         private void Check_in_outForm_Load_1(object sender, EventArgs e)
         {
             DateTime tmp = dateTimePicker1.Value;
-            SqlCommand command = new SqlCommand("select  * from  Schedules where Schedules.emp_id = (select emp_id from (select acc_id from Accounts where username = '"
-                + username+ "') as p inner join EmployeeAccounts on p.acc_id = EmployeeAccounts.acc_id)");
+     
+            dgv.DataSource = ck.schedule(username);
             dgv.RowTemplate.Height = 50;
-            command.Parameters.Add("@tmp", SqlDbType.DateTime).Value = tmp;
-            dgv.DataSource = ck.getSchedule(command);
-        }
+            dgv.ReadOnly = true;
 
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+            DataTable tableSh = sch.getScheduleNow(tmp);
+            label1.Text = "Your Shift From " + Convert.ToDateTime(tableSh.Rows[0]["date_start"].ToString()).ToString("MM/dd/yyyy") + " To " + Convert.ToDateTime(tableSh.Rows[0]["date_end"].ToString()).ToString("MM/dd/yyyy");
+
+            int id = IdUser();
+            dgv_check.RowTemplate.Height = 50;
+            dgv_check.ReadOnly = true;
+            dgv_check.DataSource = dgvCheck();
+            
+        }
+        public DataTable dgvCheck()
         {
-            emp_id_TB.Text = dgv.CurrentRow.Cells[2].Value.ToString();
-            shift_id_TB.Text = dgv.CurrentRow.Cells[1].Value.ToString();
-            firstname_TB.Text = dgv.CurrentRow.Cells[3].Value.ToString();
-            lastname_TB.Text = dgv.CurrentRow.Cells[4].Value.ToString();
-            title_TB.Text = dgv.CurrentRow.Cells[5].Value.ToString();
-            day_TB.Text = DateTime.Now.DayOfWeek.ToString();
-        }
+            int shi = shift();
+            int id = IdUser();
+            DataTable dtCheckIn = ck.tableCheckinout(id, "Check In");
 
+            DataTable dtCheckOut = ck.tableCheckinout(id, "Check Out");
+
+            DataTable tableCheck = new DataTable();
+            tableCheck.Columns.Add("Shift Name", typeof(string));
+            tableCheck.Columns.Add("Date", typeof(string));
+            tableCheck.Columns.Add("Time In", typeof(string));
+            tableCheck.Columns.Add("Time Out", typeof(string));
+            for(int i = 0; i < dtCheckIn.Rows.Count; i++)
+            {
+                DataRow dr = tableCheck.NewRow();
+                dr["Shift Name"] = dtCheckIn.Rows[i]["shift_name"].ToString();
+                dr["Date"] = Convert.ToDateTime(dtCheckIn.Rows[i]["day_check"].ToString()).DayOfWeek.ToString();
+                dr["Time In"] = Convert.ToDateTime(dtCheckIn.Rows[i]["time_check"].ToString()).ToString("HH:mm:ss");
+                tableCheck.Rows.Add(dr);
+            }
+            for(int i = 0; i < dtCheckIn.Rows.Count; i++)
+            {
+                for(int j = 0; j < dtCheckOut.Rows.Count; j++)
+                {
+                    if(tableCheck.Rows[i]["Shift Name"].ToString() == dtCheckOut.Rows[j]["shift_name"].ToString())
+                    {
+                        tableCheck.Rows[i]["Time Out"] = Convert.ToDateTime(dtCheckOut.Rows[i]["time_check"].ToString()).ToString("HH:mm:ss");
+                    }
+                }
+            }
+            return tableCheck;
+
+        }
+        public int IdUser()
+        {
+            SqlCommand commandID = new SqlCommand("select emp_id from EmployeeAccounts where EmployeeAccounts.acc_id = (select acc_id from Accounts where username = @user)");
+            commandID.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
+            DataTable dtID = ck.getTable(commandID);
+            return int.Parse(dtID.Rows[0]["emp_id"].ToString());
+        }
         public int shift()
         {
-            int sht = 0;
+            int sht = 3;
             SqlCommand command = new SqlCommand("select shift_id, time_start, time_end from Shifts");
-            DataTable dt = ck.getSchedule(command);
+            DataTable dt = ck.getTable(command);
             DateTime tmp = Convert.ToDateTime(DateTime.Now.ToString("HH:mm:ss"));
             for(int i = 0; i < dt.Rows.Count; i++)
             {
@@ -57,89 +96,85 @@ namespace QuanLiKhachSan
             }
             return sht;
         }
-
-        public bool checkout()
-        {
-            SqlCommand command = new SqlCommand("select * from check_in_out");
-            DataTable dt = ck.getSchedule(command);
-
-            SqlCommand commandID = new SqlCommand("select emp_id from EmployeeAccounts where EmployeeAccounts.acc_id = (select acc_id from Accounts where username = @user)");
-            commandID.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
-            DataTable dtID = ck.getSchedule(commandID);
-
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                if (dt.Rows[i]["emp_id"].ToString() == dtID.Rows[0]["emp_id"].ToString()
-                    && Convert.ToDateTime(dt.Rows[i]["day_check"].ToString()).ToString("MM/dd/yyyy") == DateTime.Now.ToString("MM/dd/yyyy")
-                    && dt.Rows[i]["status_check"].ToString() == "Check Out" && dt.Rows[i]["shift_id"].ToString() == shift().ToString())
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
         public bool checkin()
         {
-            SqlCommand command = new SqlCommand("select * from check_in_out");
-            DataTable dt = ck.getSchedule(command);
-
-            SqlCommand commandID  = new SqlCommand("select emp_id from EmployeeAccounts where EmployeeAccounts.acc_id = (select acc_id from Accounts where username = @user)");
-            commandID.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
-            DataTable dtID = ck.getSchedule(commandID);
-
-
+            int id = IdUser();
+            SqlCommand command = new SqlCommand("select emp_id, shift_id, day_check from CheckInOut where status_check = 'Check In' and emp_id = @idu");
+            command.Parameters.Add("@idu", SqlDbType.Int).Value = id;
+            DataTable dt = ck.getTable(command);
             for(int i = 0; i < dt.Rows.Count; i++)
             {
-                if(dt.Rows[i]["emp_id"].ToString() == dtID.Rows[0]["emp_id"].ToString() 
-                    && Convert.ToDateTime(dt.Rows[i]["day_check"].ToString()).ToString("MM/dd/yyyy") == DateTime.Now.ToString("MM/dd/yyyy")
-                    && dt.Rows[i]["status_check"].ToString() == "Check In" && dt.Rows[i]["shift_id"].ToString() == shift().ToString())
+                if(shift() == 3 && dt.Rows[i]["shift_id"].ToString() == shift().ToString())
+                {
+                    if(Convert.ToDateTime(dt.Rows[i]["day_check"].ToString()).ToString("MM/dd/yyyy") == DateTime.Now.ToString("MM/dd/yyyy") 
+                        || Convert.ToDateTime(dt.Rows[i]["day_check"].ToString()).AddDays(1).ToString("MM/dd/yyyy") == DateTime.Now.ToString("MM/dd/yyyy"))
+                    {
+                        return false;
+                    }
+                }
+                else if (dt.Rows[i]["shift_id"].ToString() == shift().ToString()
+                    && Convert.ToDateTime(dt.Rows[i]["day_check"].ToString()).ToString("MM/dd/yyyy") == DateTime.Now.ToString("MM/dd/yyyy"))
                 {
                     return false;
                 }
             }
             return true;
         }
-
-
+        public bool checkout()
+        {
+            SqlCommand command = new SqlCommand("select emp_id, shift_id, day_check from CheckInOut where status_check = 'Check Out'");
+            DataTable dt = ck.getTable(command);
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (dt.Rows[i]["emp_id"].ToString() == IdUser().ToString() && dt.Rows[i]["shift_id"].ToString() == shift().ToString()
+                    && Convert.ToDateTime(dt.Rows[i]["day_check"].ToString()).ToString("MM/dd/yyyy") == DateTime.Now.ToString("MM/dd/yyyy"))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private void Check_in_BT_Click(object sender, EventArgs e)
         {
-            if (shift().ToString() != shift_id_TB.Text)
+            if (checkin())
             {
-                MessageBox.Show("Please select the correct shift to check in!", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if(MessageBox.Show("Are You Sure To Check In?", "Check In", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ck.insertCheckinout(IdUser(), shift(), Convert.ToDateTime(DateTime.Now.ToString("HH:mm:ss")), DateTime.Now, "Check In");
+                    MessageBox.Show("You have successfully checked in", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dgv_check.DataSource = dgvCheck();
+                    dgv_check.RowTemplate.Height = 50;
+                    dgv_check.ReadOnly = true;
+                }
             }
             else
             {
-                if(checkin() && MessageBox.Show("Are you sure to check in?", "Check In", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    ck.insertCheckinout(int.Parse(emp_id_TB.Text), DateTime.Now, "Check In", shift());
-                    MessageBox.Show("Check in is successful", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if(!checkin())
-                {
-                    MessageBox.Show("You have already checked in", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
+                MessageBox.Show("You have already checked in this shift !", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }    
         }
 
         private void Check_out_BT_Click(object sender, EventArgs e)
         {
-            if (shift().ToString() != shift_id_TB.Text)
+            if (checkout())
             {
-                MessageBox.Show("Please select the correct shift to check out!", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (MessageBox.Show("Are You Sure To Check Out?", "Check Out", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ck.insertCheckinout(IdUser(), shift(), Convert.ToDateTime(DateTime.Now.ToString("HH:mm:ss")), DateTime.Now, "Check Out");
+                    MessageBox.Show("You have successfully checked Out", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dgv_check.DataSource = dgvCheck();
+                    dgv_check.RowTemplate.Height = 50;
+                    dgv_check.ReadOnly = true;
+                }
             }
             else
             {
-                if (checkout() && MessageBox.Show("Are you sure to check out?", "Check Out", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    ck.insertCheckinout(int.Parse(emp_id_TB.Text), DateTime.Now, "Check Out", shift());
-                    MessageBox.Show("Check out is successful", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if(!checkout())
-                {
-                    MessageBox.Show("You have already checked out", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
+                MessageBox.Show("You have already checked out this shift !", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }    
+        }
+
+        private void Cancel_BT_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

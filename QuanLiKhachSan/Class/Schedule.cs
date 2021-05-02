@@ -65,6 +65,16 @@ namespace QuanLiKhachSan
             da.Fill(dt);
             return dt;
         }
+        public DataTable getScheduleNow(DateTime now)
+        {
+            com.CommandText = "Select distinct schedule_id, date_start, date_end From Schedules where date_start <= @tnow and date_end >= @tnow";
+            com.Connection = mydb.getConnection;
+            com.Parameters.Add("@tnow", SqlDbType.DateTime).Value = now;
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
         public DataTable getScheduleAllInfo(int id)
         {
             com.CommandText = "Select emp_id, firstname, lastname, title, Monday, Tuesday, Wednesday, " + 

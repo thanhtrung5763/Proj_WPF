@@ -33,7 +33,7 @@ namespace QuanLiKhachSan
             }
             else if(radioEmp.Checked)
             {
-                Application.Run(new ReceptionistForm());
+                Application.Run(new ReceptionistForm(username_TB.Text.ToString()));
             }
         }
     

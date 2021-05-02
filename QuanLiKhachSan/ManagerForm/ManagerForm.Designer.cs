@@ -53,9 +53,9 @@ namespace QuanLiKhachSan
             this.panel1.Controls.Add(this.employ_BT);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 44);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(311, 615);
+            this.panel1.Size = new System.Drawing.Size(297, 615);
             this.panel1.TabIndex = 1;
             // 
             // Check_in_out_BT
@@ -70,7 +70,7 @@ namespace QuanLiKhachSan
             this.Check_in_out_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
             this.Check_in_out_BT.HoverState.Parent = this.Check_in_out_BT;
             this.Check_in_out_BT.Location = new System.Drawing.Point(0, 264);
-            this.Check_in_out_BT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Check_in_out_BT.Margin = new System.Windows.Forms.Padding(2);
             this.Check_in_out_BT.Name = "Check_in_out_BT";
             this.Check_in_out_BT.ShadowDecoration.Parent = this.Check_in_out_BT;
             this.Check_in_out_BT.Size = new System.Drawing.Size(311, 44);
@@ -90,7 +90,7 @@ namespace QuanLiKhachSan
             this.mngRooms_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
             this.mngRooms_BT.HoverState.Parent = this.mngRooms_BT;
             this.mngRooms_BT.Location = new System.Drawing.Point(0, 124);
-            this.mngRooms_BT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mngRooms_BT.Margin = new System.Windows.Forms.Padding(2);
             this.mngRooms_BT.Name = "mngRooms_BT";
             this.mngRooms_BT.ShadowDecoration.Parent = this.mngRooms_BT;
             this.mngRooms_BT.Size = new System.Drawing.Size(311, 44);
@@ -110,7 +110,7 @@ namespace QuanLiKhachSan
             this.mngSchedules_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
             this.mngSchedules_BT.HoverState.Parent = this.mngSchedules_BT;
             this.mngSchedules_BT.Location = new System.Drawing.Point(0, 196);
-            this.mngSchedules_BT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mngSchedules_BT.Margin = new System.Windows.Forms.Padding(2);
             this.mngSchedules_BT.Name = "mngSchedules_BT";
             this.mngSchedules_BT.ShadowDecoration.Parent = this.mngSchedules_BT;
             this.mngSchedules_BT.Size = new System.Drawing.Size(311, 44);
@@ -131,7 +131,7 @@ namespace QuanLiKhachSan
             this.employ_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
             this.employ_BT.HoverState.Parent = this.employ_BT;
             this.employ_BT.Location = new System.Drawing.Point(0, 58);
-            this.employ_BT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.employ_BT.Margin = new System.Windows.Forms.Padding(2);
             this.employ_BT.Name = "employ_BT";
             this.employ_BT.ShadowDecoration.Parent = this.employ_BT;
             this.employ_BT.Size = new System.Drawing.Size(311, 44);
@@ -144,10 +144,10 @@ namespace QuanLiKhachSan
             this.panel2.AutoSize = true;
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(311, 44);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Location = new System.Drawing.Point(297, 44);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(653, 615);
+            this.panel2.Size = new System.Drawing.Size(667, 615);
             this.panel2.TabIndex = 2;
             // 
             // guna2ControlBox3
@@ -160,7 +160,7 @@ namespace QuanLiKhachSan
             this.guna2ControlBox3.HoverState.Parent = this.guna2ControlBox3;
             this.guna2ControlBox3.IconColor = System.Drawing.Color.White;
             this.guna2ControlBox3.Location = new System.Drawing.Point(899, 10);
-            this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2ControlBox3.Name = "guna2ControlBox3";
             this.guna2ControlBox3.ShadowDecoration.Parent = this.guna2ControlBox3;
             this.guna2ControlBox3.Size = new System.Drawing.Size(29, 23);
@@ -175,7 +175,7 @@ namespace QuanLiKhachSan
             this.guna2ControlBox2.HoverState.Parent = this.guna2ControlBox2;
             this.guna2ControlBox2.IconColor = System.Drawing.Color.White;
             this.guna2ControlBox2.Location = new System.Drawing.Point(927, 10);
-            this.guna2ControlBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ControlBox2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2ControlBox2.Name = "guna2ControlBox2";
             this.guna2ControlBox2.ShadowDecoration.Parent = this.guna2ControlBox2;
             this.guna2ControlBox2.Size = new System.Drawing.Size(29, 23);
@@ -189,7 +189,7 @@ namespace QuanLiKhachSan
             this.guna2GradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.Teal;
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.ShadowDecoration.Parent = this.guna2GradientPanel1;
             this.guna2GradientPanel1.Size = new System.Drawing.Size(964, 44);
@@ -209,7 +209,7 @@ namespace QuanLiKhachSan
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.guna2GradientPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "ManagerForm";
