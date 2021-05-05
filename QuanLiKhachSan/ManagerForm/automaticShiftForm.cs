@@ -77,28 +77,53 @@ namespace QuanLiKhachSan
         }
         private void add2_BT_Click(object sender, EventArgs e)
         {
-            int schedule_id = schedule.numOfSchedule() + 1;
-            int shift_id = 1;
-            for (int i = 0; i < automaticShift_DGV.Rows.Count; i++)
+            DateTime dstart = new DateTime(datestart_DTP.Value.Year, datestart_DTP.Value.Month, datestart_DTP.Value.Day, 0, 0, 0);
+            DateTime dend = new DateTime(dateend_DTP.Value.Year, dateend_DTP.Value.Month, dateend_DTP.Value.Day, 23, 59, 59);
+            if(dstart >= dend)
             {
-                if ((i + 1) % emp.numOfEmployees() == 0)
-                    shift_id += 1;
-                int emp_id = Convert.ToInt32(automaticShift_DGV.Rows[i].Cells["Employee ID"].Value);
-                string firstname = automaticShift_DGV.Rows[i].Cells["First Name"].Value.ToString();
-                string lastname = automaticShift_DGV.Rows[i].Cells["Last Name"].Value.ToString();
-                string title = automaticShift_DGV.Rows[i].Cells["Title"].Value.ToString();
-                string Monday = automaticShift_DGV.Rows[i].Cells["Monday"].Value.ToString();
-                string Tuesday = automaticShift_DGV.Rows[i].Cells["Tuesday"].Value.ToString();
-                string Wednesday = automaticShift_DGV.Rows[i].Cells["Wednesday"].Value.ToString();
-                string Thursday = automaticShift_DGV.Rows[i].Cells["Thursday"].Value.ToString();
-                string Friday = automaticShift_DGV.Rows[i].Cells["Friday"].Value.ToString();
-                string Saturday = automaticShift_DGV.Rows[i].Cells["Saturday"].Value.ToString();
-                string Sunday = automaticShift_DGV.Rows[i].Cells["Sunday"].Value.ToString();
-                schedule.addSchedule(schedule_id, shift_id, emp_id, firstname, lastname, title, datestart_DTP.Value, dateend_DTP.Value,
-                                    Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);
+                MessageBox.Show("Cannot Generate Schedule With Date Start Higher Than Date End! PLease Try Again.", "Create Schedule", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if(dstart.DayOfWeek.ToString() != "Monday")
+            {
+                MessageBox.Show("Date Start Must Be Monday", "Create Schedule", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if(dend.DayOfWeek.ToString() != "Sunday")
+            {
+                MessageBox.Show("Date End Must Be Monday", "Create Schedule", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (!schedule.isExist(dstart, dend))
+                {
+                    int schedule_id = schedule.numOfSchedule() + 1;
+                    int shift_id = 1;
+
+                    for (int i = 0; i < automaticShift_DGV.Rows.Count; i++)
+                    {
+                        if ((i + 1) % emp.numOfEmployees() == 0)
+                            shift_id += 1;
+                        int emp_id = Convert.ToInt32(automaticShift_DGV.Rows[i].Cells["Employee ID"].Value);
+                        string firstname = automaticShift_DGV.Rows[i].Cells["First Name"].Value.ToString();
+                        string lastname = automaticShift_DGV.Rows[i].Cells["Last Name"].Value.ToString();
+                        string title = automaticShift_DGV.Rows[i].Cells["Title"].Value.ToString();
+                        string Monday = automaticShift_DGV.Rows[i].Cells["Monday"].Value.ToString();
+                        string Tuesday = automaticShift_DGV.Rows[i].Cells["Tuesday"].Value.ToString();
+                        string Wednesday = automaticShift_DGV.Rows[i].Cells["Wednesday"].Value.ToString();
+                        string Thursday = automaticShift_DGV.Rows[i].Cells["Thursday"].Value.ToString();
+                        string Friday = automaticShift_DGV.Rows[i].Cells["Friday"].Value.ToString();
+                        string Saturday = automaticShift_DGV.Rows[i].Cells["Saturday"].Value.ToString();
+                        string Sunday = automaticShift_DGV.Rows[i].Cells["Sunday"].Value.ToString();
+                        schedule.addSchedule(schedule_id, shift_id, emp_id, firstname, lastname, title, dstart, dend,
+                                            Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);
+                    }
+                    MessageBox.Show("Generate Schedule Has Been Succeed.", "Create Schedule", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("This Schedule Conflicted With Exist Schedule! Please Try Again.", "Create Schedule", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
-
         private void cancel_BT_Click(object sender, EventArgs e)
         {
             this.Close();

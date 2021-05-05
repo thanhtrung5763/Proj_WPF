@@ -190,3 +190,14 @@ DROP TAble dbo.Schedules
 Select * From dbo.Schedules
 
 Select Count(distinct schedule_id) From dbo.Schedules
+
+
+CREATE TABLE [dbo].[CheckInOut] (
+    [emp_id]       INT           NULL,
+    [shift_id]     INT           NULL,
+    [day_check]    DATE          NULL,
+    [time_check]   TIME (7)      NULL,
+    [status_check] NVARCHAR (50) NULL,
+    FOREIGN KEY ([emp_id]) REFERENCES [dbo].[Employees] ([emp_id]),
+    FOREIGN KEY ([shift_id]) REFERENCES [dbo].[Shifts] ([shift_id])
+);

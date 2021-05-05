@@ -77,8 +77,8 @@ namespace QuanLiKhachSan
         }
         public DataTable getScheduleAllInfo(int id)
         {
-            com.CommandText = "Select emp_id, firstname, lastname, title, Monday, Tuesday, Wednesday, " + 
-                "Thursday, Friday, Saturday, Sunday From Schedules Where schedule_id = @sid";
+            com.CommandText = "Select emp_id, firstname, lastname, title, Monday, Tuesday, Wednesday, " +
+                "Thursday, Friday, Saturday, Sunday From Schedules Where schedule_id = @sid ORDER BY shift_id ASC";
             com.Parameters.Add("@sid", SqlDbType.Int).Value = id;
             com.Connection = mydb.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
@@ -86,6 +86,22 @@ namespace QuanLiKhachSan
             da.Fill(dt);
             com.Parameters.Clear();
             return dt;
+        }
+        public bool isExist(DateTime dstart, DateTime dend)
+        {
+            if(this.numOfSchedule() == 0)
+                return false;
+            com.CommandText = "Select Count(*) From Schedules Where @dend >= date_start AND @dstart <= date_end";
+            com.Parameters.Add("@dstart", SqlDbType.DateTime).Value = dstart;
+            com.Parameters.Add("@dend", SqlDbType.DateTime).Value = dend;
+            com.Connection = mydb.getConnection;
+            mydb.openConnection();
+            int num = (int)com.ExecuteScalar();
+            mydb.closeConnection();
+            com.Parameters.Clear();
+            if (num > 0)
+                return true;
+            return false;
         }
     }
 }

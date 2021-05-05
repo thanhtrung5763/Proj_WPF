@@ -34,11 +34,13 @@ namespace QuanLiKhachSan
             myDB.openConnection();
             if (command.ExecuteNonQuery() == 1)
             {
+                command.Parameters.Clear();
                 myDB.closeConnection();
                 return true;
             }
             else
             {
+                command.Parameters.Clear();
                 myDB.closeConnection();
                 return false;
             }
