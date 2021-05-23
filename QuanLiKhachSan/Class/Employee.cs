@@ -64,11 +64,13 @@ namespace QuanLiKhachSan
             mydb.openConnection();
             if (com.ExecuteNonQuery() == 1)
             {
+                com.Parameters.Clear();
                 mydb.closeConnection();
                 return true;
             }
             else
             {
+                com.Parameters.Clear();
                 mydb.closeConnection();
                 return false;
             }
@@ -82,9 +84,11 @@ namespace QuanLiKhachSan
                 mydb.openConnection();
                 if (com.ExecuteNonQuery() == 1)
                 {
+                    com.Parameters.Clear();
                     mydb.closeConnection();
                     return true;
                 }
+                com.Parameters.Clear();
             }
             catch (Exception ex)
             {
@@ -94,6 +98,7 @@ namespace QuanLiKhachSan
             {
                 mydb.closeConnection();
             }
+            
             return false;
         }
         public DataTable getEmployees(SqlCommand com)
@@ -102,6 +107,7 @@ namespace QuanLiKhachSan
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
+            com.Parameters.Clear();
             return dt;
         }
         public int countEmployeesByTitle(string title)
@@ -111,6 +117,7 @@ namespace QuanLiKhachSan
             mydb.openConnection();
             int res = (int)com.ExecuteScalar();
             mydb.closeConnection();
+            com.Parameters.Clear();
             return res;
         }
         public int numOfEmployees()

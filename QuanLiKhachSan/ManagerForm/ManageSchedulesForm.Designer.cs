@@ -40,6 +40,7 @@ namespace QuanLiKhachSan
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panelMngScheduleShift = new Guna.UI2.WinForms.Guna2Panel();
+            this.applySetting_BT = new Guna.UI2.WinForms.Guna2Button();
             this.edit_BT = new Guna.UI2.WinForms.Guna2Button();
             this.timeEnd_TB = new Guna.UI2.WinForms.Guna2TextBox();
             this.showSchedule_BT = new Guna.UI2.WinForms.Guna2Button();
@@ -98,6 +99,7 @@ namespace QuanLiKhachSan
             // 
             // panelMngScheduleShift
             // 
+            this.panelMngScheduleShift.Controls.Add(this.applySetting_BT);
             this.panelMngScheduleShift.Controls.Add(this.edit_BT);
             this.panelMngScheduleShift.Controls.Add(this.timeEnd_TB);
             this.panelMngScheduleShift.Controls.Add(this.showSchedule_BT);
@@ -120,6 +122,23 @@ namespace QuanLiKhachSan
             this.panelMngScheduleShift.ShadowDecoration.Parent = this.panelMngScheduleShift;
             this.panelMngScheduleShift.Size = new System.Drawing.Size(1478, 776);
             this.panelMngScheduleShift.TabIndex = 75;
+            // 
+            // applySetting_BT
+            // 
+            this.applySetting_BT.BorderRadius = 20;
+            this.applySetting_BT.CheckedState.Parent = this.applySetting_BT;
+            this.applySetting_BT.CustomImages.Parent = this.applySetting_BT;
+            this.applySetting_BT.FillColor = System.Drawing.Color.SteelBlue;
+            this.applySetting_BT.Font = new System.Drawing.Font("Segoe UI", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.applySetting_BT.ForeColor = System.Drawing.Color.White;
+            this.applySetting_BT.HoverState.Parent = this.applySetting_BT;
+            this.applySetting_BT.Location = new System.Drawing.Point(868, 656);
+            this.applySetting_BT.Name = "applySetting_BT";
+            this.applySetting_BT.ShadowDecoration.Parent = this.applySetting_BT;
+            this.applySetting_BT.Size = new System.Drawing.Size(597, 80);
+            this.applySetting_BT.TabIndex = 106;
+            this.applySetting_BT.Text = "Add Setting";
+            this.applySetting_BT.Click += new System.EventHandler(this.applySetting_BT_Click);
             // 
             // edit_BT
             // 
@@ -173,10 +192,10 @@ namespace QuanLiKhachSan
             this.showSchedule_BT.Font = new System.Drawing.Font("Segoe UI", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showSchedule_BT.ForeColor = System.Drawing.Color.White;
             this.showSchedule_BT.HoverState.Parent = this.showSchedule_BT;
-            this.showSchedule_BT.Location = new System.Drawing.Point(1034, 656);
+            this.showSchedule_BT.Location = new System.Drawing.Point(17, 656);
             this.showSchedule_BT.Name = "showSchedule_BT";
             this.showSchedule_BT.ShadowDecoration.Parent = this.showSchedule_BT;
-            this.showSchedule_BT.Size = new System.Drawing.Size(267, 80);
+            this.showSchedule_BT.Size = new System.Drawing.Size(828, 80);
             this.showSchedule_BT.TabIndex = 74;
             this.showSchedule_BT.Text = "Generate Schedule";
             this.showSchedule_BT.Click += new System.EventHandler(this.showSchedule_BT_Click);
@@ -386,7 +405,7 @@ namespace QuanLiKhachSan
             this.del_BT.ShadowDecoration.Parent = this.del_BT;
             this.del_BT.Size = new System.Drawing.Size(267, 80);
             this.del_BT.TabIndex = 94;
-            this.del_BT.Text = "Delete";
+            this.del_BT.Text = "Delete Shift";
             this.del_BT.Click += new System.EventHandler(this.del_BT_Click);
             // 
             // add_BT
@@ -403,7 +422,7 @@ namespace QuanLiKhachSan
             this.add_BT.ShadowDecoration.Parent = this.add_BT;
             this.add_BT.Size = new System.Drawing.Size(267, 80);
             this.add_BT.TabIndex = 93;
-            this.add_BT.Text = "Add";
+            this.add_BT.Text = "Add Shift";
             this.add_BT.Click += new System.EventHandler(this.add_BT_Click);
             // 
             // shifts_DGV
@@ -438,7 +457,7 @@ namespace QuanLiKhachSan
             this.shifts_DGV.RowTemplate.ReadOnly = true;
             this.shifts_DGV.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.shifts_DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.shifts_DGV.Size = new System.Drawing.Size(828, 560);
+            this.shifts_DGV.Size = new System.Drawing.Size(828, 590);
             this.shifts_DGV.TabIndex = 92;
             // 
             // label3
@@ -626,5 +645,6 @@ namespace QuanLiKhachSan
         private System.Windows.Forms.DataGridView shifts_DGV;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private Guna.UI2.WinForms.Guna2Button applySetting_BT;
     }
 }

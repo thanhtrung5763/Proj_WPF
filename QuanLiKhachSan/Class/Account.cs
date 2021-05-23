@@ -19,6 +19,26 @@ namespace QuanLiKhachSan
             da.Fill(dt);
             return dt;
         }
+        public bool updateAccount(int id, string user, string pass)
+        {
+            SqlCommand com = new SqlCommand("Update Accounts Set username=@usn, password=@psw Where acc_id = @id", mydb.getConnection);
+            com.Parameters.Add("@id", SqlDbType.Int).Value = id;
+            com.Parameters.Add("@usn", SqlDbType.NVarChar).Value = user;
+            com.Parameters.Add("@psw", SqlDbType.NVarChar).Value = pass;
+            mydb.openConnection();
+            if (com.ExecuteNonQuery() == 1)
+            {
+                com.Parameters.Clear();
+                mydb.closeConnection();
+                return true;
+            }
+            else
+            {
+                com.Parameters.Clear();
+                mydb.closeConnection();
+                return false;
+            }
+        }
         public bool createAccount(string id, string username, string password)
         {
 

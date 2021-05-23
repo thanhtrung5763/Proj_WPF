@@ -13,10 +13,8 @@ namespace QuanLiKhachSan
 {
     public partial class Check_in_outForm : Form
     {
-        string username;
-        public Check_in_outForm(string user)
+        public Check_in_outForm()
         {
-            username = user;
             InitializeComponent();
         }
         MY_DB myDB = new MY_DB();
@@ -25,156 +23,185 @@ namespace QuanLiKhachSan
         Schedule sch = new Schedule();
         private void Check_in_outForm_Load_1(object sender, EventArgs e)
         {
+            this.ParentForm.Width = 1050;
+            this.ParentForm.Height = 560;
             DateTime tmp = dateTimePicker1.Value;
      
-            dgv.DataSource = ck.schedule(username);
-            dgv.RowTemplate.Height = 50;
-            dgv.ReadOnly = true;
+            shifts_DGV.DataSource = ck.getScheduleByUserId(tmp, Globals.GlobalUserId);
+            shifts_DGV.RowTemplate.Height = 50;
+            shifts_DGV.ReadOnly = true;
+            shifts_DGV.AllowUserToAddRows = false;
 
-            DataTable tableSh = sch.getScheduleNow(tmp);
+
+            DataTable tableSh = sch.getDateStartEnd(tmp);
             label1.Text = "Your Shift From " + Convert.ToDateTime(tableSh.Rows[0]["date_start"].ToString()).ToString("MM/dd/yyyy") + " To " + Convert.ToDateTime(tableSh.Rows[0]["date_end"].ToString()).ToString("MM/dd/yyyy");
 
-            int id = IdUser();
-            dgv_check.RowTemplate.Height = 50;
-            dgv_check.ReadOnly = true;
-            dgv_check.DataSource = dgvCheck();
-            
+            setting_DGV.DataSource = ck.getShiftTimeByUserId(DateTime.Now, Globals.GlobalUserId);
+            setting_DGV.ReadOnly = true;
+            setting_DGV.AllowUserToAddRows = false;
+            setting_DGV.Columns[0].HeaderText = "Shift Name";
+            setting_DGV.Columns[1].HeaderText = "Time Start";
+            setting_DGV.Columns[2].HeaderText = "Time End";
+            setting_DGV.Columns[1].DefaultCellStyle.Format = "hh\\:mm";
+            setting_DGV.Columns[2].DefaultCellStyle.Format = "hh\\:mm";
+            setting_DGV.Columns[3].HeaderText = "No.Manager";
+            setting_DGV.Columns[4].HeaderText = "No.Receptionist";
+            setting_DGV.Columns[5].HeaderText = "No.Janitor";
+
+            checkInOut_DGV.RowTemplate.Height = 50;
+            checkInOut_DGV.ReadOnly = true;
+            checkInOut_DGV.AllowUserToAddRows = false;
+
+            checkInOut_DGV.DataSource = ck.getDataCheckInCheckOut(Globals.GlobalUserId);
+            checkInOut_DGV.Columns[0].HeaderText = "Date";
+            checkInOut_DGV.Columns[1].HeaderText = "Shift";
+            checkInOut_DGV.Columns[2].HeaderText = "Time Start";
+            checkInOut_DGV.Columns[2].DefaultCellStyle.Format = "hh\\:mm";
+            checkInOut_DGV.Columns[3].DefaultCellStyle.Format = "hh\\:mm";
+            checkInOut_DGV.Columns[3].HeaderText = "Time End";
+            checkInOut_DGV.Columns[4].HeaderText = "Time In";
+            checkInOut_DGV.Columns[5].HeaderText = "Time Out";
+
         }
-        public DataTable dgvCheck()
+        public Tuple<int, TimeSpan> getShiftName(TimeSpan time_late, TimeSpan time)
         {
-            int shi = shift();
-            int id = IdUser();
-            DataTable dtCheckIn = ck.tableCheckinout(id, "Check In");
-
-            DataTable dtCheckOut = ck.tableCheckinout(id, "Check Out");
-
-            DataTable tableCheck = new DataTable();
-            tableCheck.Columns.Add("Shift Name", typeof(string));
-            tableCheck.Columns.Add("Date", typeof(string));
-            tableCheck.Columns.Add("Time In", typeof(string));
-            tableCheck.Columns.Add("Time Out", typeof(string));
-            for(int i = 0; i < dtCheckIn.Rows.Count; i++)
+            int idx = -1;
+            TimeSpan minus = new TimeSpan();
+            foreach(DataGridViewRow row in setting_DGV.Rows)
             {
-                DataRow dr = tableCheck.NewRow();
-                dr["Shift Name"] = dtCheckIn.Rows[i]["shift_name"].ToString();
-                dr["Date"] = Convert.ToDateTime(dtCheckIn.Rows[i]["day_check"].ToString()).DayOfWeek.ToString();
-                dr["Time In"] = Convert.ToDateTime(dtCheckIn.Rows[i]["time_check"].ToString()).ToString("HH:mm:ss");
-                tableCheck.Rows.Add(dr);
-            }
-            for(int i = 0; i < dtCheckIn.Rows.Count; i++)
-            {
-                for(int j = 0; j < dtCheckOut.Rows.Count; j++)
+                TimeSpan time_start = (TimeSpan)(row.Cells["time_start"].Value);
+                TimeSpan time_end = (TimeSpan)(row.Cells["time_end"].Value);
+                if(time <= time_start || TimeSpan.Compare(time.Subtract(time_start), time_late) == - 1)
                 {
-                    if(tableCheck.Rows[i]["Shift Name"].ToString() == dtCheckOut.Rows[j]["shift_name"].ToString())
+                    idx = row.Index;
+                    minus = time_start.Subtract(time);
+                    return Tuple.Create(idx, minus);
+                }
+            }
+            return Tuple.Create(idx, minus);
+        }
+        private void checkIn_BT_Click(object sender, EventArgs e)
+        {
+            var time_late_max = new TimeSpan(1, 0, 0);
+            var dateAndTime = DateTime.Now;
+            var date_name = dateAndTime.ToString("dddd");
+            var time_now = TimeSpan.Parse((dateAndTime.ToString("HH:mm:ss")));
+            var shiftNameIdx = getShiftName(time_late_max, time_now);
+            if(shiftNameIdx.Item1 != -1)
+            {
+                int temp = TimeSpan.Compare(shiftNameIdx.Item2, new TimeSpan(0, 0, 0));
+                var shiftName = setting_DGV.Rows[shiftNameIdx.Item1].Cells["shift_name"].Value.ToString();
+                TimeSpan time_start = TimeSpan.Parse(setting_DGV.Rows[shiftNameIdx.Item1].Cells["time_start"].Value.ToString()); 
+                TimeSpan time_end = TimeSpan.Parse(setting_DGV.Rows[shiftNameIdx.Item1].Cells["time_end"].Value.ToString());
+                if(ck.isExist(Globals.GlobalUserId, dateAndTime.Date, shiftName))
+                {
+                    MessageBox.Show("You Checked In Already", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    ck.insertCheckInData(Globals.GlobalUserId, dateAndTime.Date, shiftName, time_start, time_end, time_now);
+                    if (temp == -1)
                     {
-                        tableCheck.Rows[i]["Time Out"] = Convert.ToDateTime(dtCheckOut.Rows[i]["time_check"].ToString()).ToString("HH:mm:ss");
+                        MessageBox.Show("You're late. -100.000 Salary", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    MessageBox.Show("Check In Successful.", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    checkInOut_DGV.DataSource = ck.getDataCheckInCheckOut(Globals.GlobalUserId);
                 }
-            }
-            return tableCheck;
 
-        }
-        public int IdUser()
-        {
-            SqlCommand commandID = new SqlCommand("select emp_id from EmployeeAccounts where EmployeeAccounts.acc_id = (select acc_id from Accounts where username = @user)");
-            commandID.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
-            DataTable dtID = ck.getTable(commandID);
-            return int.Parse(dtID.Rows[0]["emp_id"].ToString());
-        }
-        public int shift()
-        {
-            int sht = 3;
-            SqlCommand command = new SqlCommand("select shift_id, time_start, time_end from Shifts");
-            DataTable dt = ck.getTable(command);
-            DateTime tmp = Convert.ToDateTime(DateTime.Now.ToString("HH:mm:ss"));
-            for(int i = 0; i < dt.Rows.Count; i++)
-            {
-                if(tmp >= Convert.ToDateTime(dt.Rows[i]["time_start"].ToString()) && tmp < Convert.ToDateTime(dt.Rows[i]["time_end"].ToString()))
-                {
-                    sht =  int.Parse(dt.Rows[i]["shift_id"].ToString());
-                }
-            }
-            return sht;
-        }
-        public bool checkin()
-        {
-            int id = IdUser();
-            SqlCommand command = new SqlCommand("select emp_id, shift_id, day_check from CheckInOut where status_check = 'Check In' and emp_id = @idu");
-            command.Parameters.Add("@idu", SqlDbType.Int).Value = id;
-            DataTable dt = ck.getTable(command);
-            for(int i = 0; i < dt.Rows.Count; i++)
-            {
-                if(shift() == 3 && dt.Rows[i]["shift_id"].ToString() == shift().ToString())
-                {
-                    if(Convert.ToDateTime(dt.Rows[i]["day_check"].ToString()).ToString("MM/dd/yyyy") == DateTime.Now.ToString("MM/dd/yyyy") 
-                        || Convert.ToDateTime(dt.Rows[i]["day_check"].ToString()).AddDays(1).ToString("MM/dd/yyyy") == DateTime.Now.ToString("MM/dd/yyyy"))
-                    {
-                        return false;
-                    }
-                }
-                else if (dt.Rows[i]["shift_id"].ToString() == shift().ToString()
-                    && Convert.ToDateTime(dt.Rows[i]["day_check"].ToString()).ToString("MM/dd/yyyy") == DateTime.Now.ToString("MM/dd/yyyy"))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        public bool checkout()
-        {
-            SqlCommand command = new SqlCommand("select emp_id, shift_id, day_check from CheckInOut where status_check = 'Check Out'");
-            DataTable dt = ck.getTable(command);
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                if (dt.Rows[i]["emp_id"].ToString() == IdUser().ToString() && dt.Rows[i]["shift_id"].ToString() == shift().ToString()
-                    && Convert.ToDateTime(dt.Rows[i]["day_check"].ToString()).ToString("MM/dd/yyyy") == DateTime.Now.ToString("MM/dd/yyyy"))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        private void Check_in_BT_Click(object sender, EventArgs e)
-        {
-            if (checkin())
-            {
-                if(MessageBox.Show("Are You Sure To Check In?", "Check In", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    ck.insertCheckinout(IdUser(), shift(), Convert.ToDateTime(DateTime.Now.ToString("HH:mm:ss")), DateTime.Now, "Check In");
-                    MessageBox.Show("You have successfully checked in", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dgv_check.DataSource = dgvCheck();
-                    dgv_check.RowTemplate.Height = 50;
-                    dgv_check.ReadOnly = true;
-                }
             }
             else
             {
-                MessageBox.Show("You have already checked in this shift !", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }    
+                MessageBox.Show("You don't have shift today. Please comback later", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
-        private void Check_out_BT_Click(object sender, EventArgs e)
+        private void checkOut_BT_Click(object sender, EventArgs e)
         {
-            if (checkout())
+            var dateAndTime = DateTime.Now;
+            var time_now = TimeSpan.Parse((dateAndTime.ToString("HH:mm:ss")));
+            DataTable dt = ck.getDataCheckInCheckOutWith(Globals.GlobalUserId, dateAndTime.Date);
+            if(dt.Rows.Count >= 1)
             {
-                if (MessageBox.Show("Are You Sure To Check Out?", "Check Out", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                foreach (DataRow row in dt.Rows)
                 {
-                    ck.insertCheckinout(IdUser(), shift(), Convert.ToDateTime(DateTime.Now.ToString("HH:mm:ss")), DateTime.Now, "Check Out");
-                    MessageBox.Show("You have successfully checked Out", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dgv_check.DataSource = dgvCheck();
-                    dgv_check.RowTemplate.Height = 50;
-                    dgv_check.ReadOnly = true;
+                    if (row["time_out"] == DBNull.Value)
+                    {
+                        if(TimeSpan.Compare(time_now, TimeSpan.Parse(row["time_start"].ToString())) <= 0) {
+                            MessageBox.Show("You cannot check out before the time your shift start.", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            checkInOut_DGV.DataSource = ck.getDataCheckInCheckOut(Globals.GlobalUserId);
+                            return;
+                        }
+                        if (TimeSpan.Compare(time_now, TimeSpan.Parse(row["time_end"].ToString())) < 0)
+                        {
+                            if (MessageBox.Show("Too Soon To Check Out. Are You Still Want To Check Out?.", "Check Out", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                            {
+                                TimeSpan twork = new TimeSpan(time_now.Hours - TimeSpan.Parse(row["time_start"].ToString()).Hours, 0, 0);
+                                ck.insertCheckOutData(Globals.GlobalUserId, dateAndTime.Date, row["shift_name"].ToString(), time_now, twork);
+                                checkInOut_DGV.DataSource = ck.getDataCheckInCheckOut(Globals.GlobalUserId);
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            TimeSpan twork = TimeSpan.Parse(row["time_end"].ToString()).Subtract(TimeSpan.Parse(row["time_start"].ToString()));
+                            ck.insertCheckOutData(Globals.GlobalUserId, dateAndTime.Date, row["shift_name"].ToString(), time_now, twork);
+                            checkInOut_DGV.DataSource = ck.getDataCheckInCheckOut(Globals.GlobalUserId);
+                            MessageBox.Show("Check Out Successful.", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        if(dt.Rows.IndexOf(row) == dt.Rows.Count - 1)
+                            MessageBox.Show("You Were Checked Out Before.", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
+                checkInOut_DGV.DataSource = ck.getDataCheckInCheckOut(Globals.GlobalUserId);
             }
             else
             {
-                MessageBox.Show("You have already checked out this shift !", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }    
-        }
+                TimeSpan t = new TimeSpan(12, 0, 0);
+                dateAndTime = dateAndTime.AddDays(-1);
 
-        private void Cancel_BT_Click(object sender, EventArgs e)
-        {
-            Close();
+                dt = ck.getDataCheckInCheckOutWith(Globals.GlobalUserId, dateAndTime.Date);
+                if(dt.Rows.Count >= 1)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if (TimeSpan.Parse(row["time_start"].ToString()) >= t && TimeSpan.Parse(row["time_end"].ToString()) <= t)
+                        {
+                            if (row["time_out"] == DBNull.Value)
+                            {
+                                if (TimeSpan.Compare(time_now, TimeSpan.Parse(row["time_end"].ToString())) < 0)
+                                {
+                                    if (MessageBox.Show("Too Soon To Check Out. Are You Still Want To Check Out?.", "Check Out", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                                    {
+                                        TimeSpan twork = new TimeSpan(time_now.Hours + (24 - TimeSpan.Parse(row["time_start"].ToString()).Hours), 0, 0);
+                                        ck.insertCheckOutData(Globals.GlobalUserId, dateAndTime.Date, row["shift_name"].ToString(), time_now, twork);
+                                        checkInOut_DGV.DataSource = ck.getDataCheckInCheckOut(Globals.GlobalUserId);
+                                        return;
+                                    }
+                                }
+                                else
+                                {
+                                    TimeSpan twork = new TimeSpan(TimeSpan.Parse(row["time_end"].ToString()).Hours + (24 - TimeSpan.Parse(row["time_start"].ToString()).Hours), 0, 0);
+                                    ck.insertCheckOutData(Globals.GlobalUserId, dateAndTime.Date, row["shift_name"].ToString(), time_now, twork);
+                                    checkInOut_DGV.DataSource = ck.getDataCheckInCheckOut(Globals.GlobalUserId);
+                                    MessageBox.Show("Check Out Successful.", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                            }
+                            else
+                            {
+                                if (dt.Rows.IndexOf(row) == dt.Rows.Count - 1)
+                                    MessageBox.Show("You Were Checked Out Before.", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+
+                        checkInOut_DGV.DataSource = ck.getDataCheckInCheckOut(Globals.GlobalUserId);
+                    }
+                }
+                return;
+            }
         }
     }
 }

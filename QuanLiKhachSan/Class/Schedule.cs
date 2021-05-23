@@ -20,15 +20,15 @@ namespace QuanLiKhachSan
             mydb.closeConnection();
             return num;
         }
-        public bool addSchedule(int id, int shift_id, int emp_id, string firstname, string lastname, string title, DateTime date_start, DateTime date_end,
+        public bool addSchedule(int id, int set_id, int emp_id, string firstname, string lastname, string title, DateTime date_start, DateTime date_end,
                         string Monday, string Tuesday, string Wednesday, string Thursday, string Friday, string Saturday, string Sunday)
         {
-            com.CommandText = "Insert into Schedules(schedule_id, shift_id, emp_id, firstname, lastname, title, date_start, date_end, " +
+            com.CommandText = "Insert into Schedules(schedule_id, set_id, emp_id, firstname, lastname, title, date_start, date_end, " +
                 "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday)" +
-                "Values(@sch_id, @sid, @eid, @fname, @lname, @tle, @dstart, @dend, @mday, @tday, @wday, @thday, @fday, @satday, @sunday)";
+                "Values(@sch_id, @set_id, @eid, @fname, @lname, @tle, @dstart, @dend, @mday, @tday, @wday, @thday, @fday, @satday, @sunday)";
             com.Connection = mydb.getConnection;
             com.Parameters.Add("@sch_id", SqlDbType.Int).Value = id;
-            com.Parameters.Add("@sid", SqlDbType.Int).Value = shift_id;
+            com.Parameters.Add("@set_id", SqlDbType.Int).Value = set_id;
             com.Parameters.Add("@eid", SqlDbType.Int).Value = emp_id;
             com.Parameters.Add("@fname", SqlDbType.NVarChar).Value = firstname;
             com.Parameters.Add("@lname", SqlDbType.NVarChar).Value = lastname;
@@ -65,21 +65,35 @@ namespace QuanLiKhachSan
             da.Fill(dt);
             return dt;
         }
-        public DataTable getScheduleNow(DateTime now)
+        public DataTable getDateStartEnd(DateTime now)
         {
-            com.CommandText = "Select distinct schedule_id, date_start, date_end From Schedules where date_start <= @tnow and date_end >= @tnow";
-            com.Connection = mydb.getConnection;
+            // tạo biến id đăng nhập globals 19 0 5
+            com.CommandText = "Select distinct set_id, date_start, date_end From Schedules where date_start <= @tnow and date_end >= @tnow";
             com.Parameters.Add("@tnow", SqlDbType.DateTime).Value = now;
+            com.Connection = mydb.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
             return dt;
         }
-        public DataTable getScheduleAllInfo(int id)
+        public int getNumScheduleGenBySet(int set_id)
+        {
+            com.Parameters.Clear();
+            com.CommandText = "Select Count(distinct schedule_id) From dbo.Schedules Where set_id=@set_id";
+            com.Parameters.Add("@set_id", SqlDbType.Int).Value = set_id;
+            com.Connection = mydb.getConnection;
+            mydb.openConnection();
+            int num = (int)com.ExecuteScalar();
+            mydb.closeConnection();
+            com.Parameters.Clear();
+
+            return num;
+        }
+        public DataTable getScheduleAllInfo(int schedule_id)
         {
             com.CommandText = "Select emp_id, firstname, lastname, title, Monday, Tuesday, Wednesday, " +
-                "Thursday, Friday, Saturday, Sunday From Schedules Where schedule_id = @sid ORDER BY shift_id ASC";
-            com.Parameters.Add("@sid", SqlDbType.Int).Value = id;
+                "Thursday, Friday, Saturday, Sunday From Schedules Where schedule_id = @sid ORDER BY emp_id ASC";
+            com.Parameters.Add("@sid", SqlDbType.Int).Value = schedule_id;
             com.Connection = mydb.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();

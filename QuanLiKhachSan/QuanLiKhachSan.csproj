@@ -54,6 +54,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Check_in_out.cs" />
+    <Compile Include="editInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editInfoForm.Designer.cs">
+      <DependentUpon>editInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Globals.cs" />
+    <Compile Include="JanitorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JanitorForm.Designer.cs">
+      <DependentUpon>JanitorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManagerForm\Check_in_outForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +108,30 @@
     <Compile Include="ManagerForm\ManageSchedulesForm.Designer.cs">
       <DependentUpon>ManageSchedulesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagerJanitorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerJanitorForm.Designer.cs">
+      <DependentUpon>ManagerJanitorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageRoomByReceptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageRoomByReceptForm.Designer.cs">
+      <DependentUpon>ManageRoomByReceptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerPaymentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerPaymentForm.Designer.cs">
+      <DependentUpon>ManagerPaymentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerScheduleJanitorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerScheduleJanitorForm.Designer.cs">
+      <DependentUpon>ManagerScheduleJanitorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReceptionistForm\ReceptionistForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +160,12 @@
       <DependentUpon>ManageEmployeesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\Room.cs" />
+    <EmbeddedResource Include="editInfoForm.resx">
+      <DependentUpon>editInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JanitorForm.resx">
+      <DependentUpon>JanitorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManagerForm\Check_in_outForm.resx">
       <DependentUpon>Check_in_outForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +189,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerForm\ManageSchedulesForm.resx">
       <DependentUpon>ManageSchedulesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerJanitorForm.resx">
+      <DependentUpon>ManagerJanitorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageRoomByReceptForm.resx">
+      <DependentUpon>ManageRoomByReceptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerPaymentForm.resx">
+      <DependentUpon>ManagerPaymentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerScheduleJanitorForm.resx">
+      <DependentUpon>ManagerScheduleJanitorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -191,6 +246,35 @@
     <Content Include="Icon\03.jpg" />
     <Content Include="Icon\04.jpg" />
     <Content Include="Icon\report-icon-13315.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

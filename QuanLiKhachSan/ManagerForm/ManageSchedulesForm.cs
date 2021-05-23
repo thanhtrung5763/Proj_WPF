@@ -23,12 +23,14 @@ namespace QuanLiKhachSan
         private void ManageSchedulesForm_Load(object sender, EventArgs e)
         {
             reloadShiftsForm();
+            
         }
         void reloadShiftsForm()
         {
             this.ParentForm.Width = 1000;
-            this.ParentForm.Height = 500;
-            shifts_DGV.DataSource = shift.getAllShifts();
+            this.ParentForm.Height = 485;
+            /*1905
+             * shifts_DGV.DataSource = shift.getAllShifts();
             shifts_DGV.ReadOnly = true;
             shifts_DGV.AllowUserToAddRows = false;
             shifts_DGV.Columns[0].HeaderText = "ID";
@@ -39,18 +41,30 @@ namespace QuanLiKhachSan
             shifts_DGV.Columns[3].DefaultCellStyle.Format = "hh\\:mm";
             shifts_DGV.Columns[4].HeaderText = "No.Manager";
             shifts_DGV.Columns[5].HeaderText = "No.Receptionist";
-            shifts_DGV.Columns[6].HeaderText = "No.Janitor";
+            shifts_DGV.Columns[6].HeaderText = "No.Janitor";*/
+            shifts_DGV.ReadOnly = true;
+            shifts_DGV.AllowUserToAddRows = false;
+            shifts_DGV.Columns.Add("ID", "ID");
+            shifts_DGV.Columns.Add("Shift Name", "Shift Name");
+            shifts_DGV.Columns.Add("Time Start", "Time Start");
+            shifts_DGV.Columns.Add("Time End", "Time End");
+            shifts_DGV.Columns[2].DefaultCellStyle.Format = "hh\\:mm";
+            shifts_DGV.Columns[3].DefaultCellStyle.Format = "hh\\:mm";
+            shifts_DGV.Columns.Add("No.Manager", "No.Manager");
+            shifts_DGV.Columns.Add("No.Receptionist", "No.Receptionist");
+            shifts_DGV.Columns.Add("No.Janitor", "No.Janitor");
             if (shifts_DGV.Rows.Count > 0)
             {
                 shifts_DGV_CellMouseClick(null, null);
             }
+
         }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(tabControl1.SelectedTab == tabControl1.TabPages[1])
             {
                 this.ParentForm.Width = 1280;
-                this.ParentForm.Height = 500;
+                this.ParentForm.Height = 515;
 
                 schedule_DGV.DataSource = schedule.getScheduleInfo();
                 schedule_DGV.Columns[0].HeaderText = "Schedule ID";
@@ -66,7 +80,7 @@ namespace QuanLiKhachSan
             else
             {
                 this.ParentForm.Width = 1000;
-                this.ParentForm.Height = 500;
+                this.ParentForm.Height = 485;
             }
         }
         
@@ -89,14 +103,26 @@ namespace QuanLiKhachSan
 
         private void add_BT_Click(object sender, EventArgs e)
         {
-            string name = shiftName_TB.Text;
+            /* 1905
+             * string name = shiftName_TB.Text;
             TimeSpan time_start = TimeSpan.Parse(timeStart_TB.Text);
             TimeSpan time_end = TimeSpan.Parse(timeEnd_TB.Text);
             int no_manager = Convert.ToInt32(manage_CBO.Text);
             int no_recept = Convert.ToInt32(recept_CBO.Text);
-            int no_janitor = Convert.ToInt32(janitor_CBO.Text);
-            shift.addShift(name, time_start, time_end, no_manager, no_recept, no_janitor);
-            shifts_DGV.DataSource = shift.getAllShifts();
+            int no_janitor = Convert.ToInt32(janitor_CBO.Text);*/
+
+            string name = shiftName_TB.Text;
+            string time_start = TimeSpan.Parse(timeStart_TB.Text).ToString("hh\\:mm");
+            string time_end = TimeSpan.Parse(timeEnd_TB.Text).ToString("hh\\:mm");
+            string no_manager = manage_CBO.Text;
+            string no_recept = recept_CBO.Text;
+            string no_janitor = janitor_CBO.Text;
+
+            
+            string[] row = { name, time_start, time_end, no_manager, no_recept, no_janitor };
+            shifts_DGV.Rows.Add(row);
+            
+            // 1905 shifts_DGV.DataSource = shift.getAllShifts();
         }
 
         private void del_BT_Click(object sender, EventArgs e)
@@ -133,6 +159,25 @@ namespace QuanLiKhachSan
             automaticShiftForm frm = new automaticShiftForm();
 
             frm.Show();
+        }
+
+        private void applySetting_BT_Click(object sender, EventArgs e)
+        {
+            int set_num = shift.numOfSetting() + 1;
+            foreach (DataGridViewRow row in shifts_DGV.Rows)
+            {
+                if(!row.IsNewRow)
+                {
+                    string name = row.Cells[0].Value.ToString();
+                    TimeSpan time_start = TimeSpan.Parse(row.Cells[1].Value.ToString());
+                    TimeSpan time_end = TimeSpan.Parse(row.Cells[2].Value.ToString());
+                    int no_manager = Convert.ToInt32(row.Cells[3].Value.ToString());
+                    int no_recept = Convert.ToInt32(row.Cells[4].Value.ToString());
+                    int no_janitor = Convert.ToInt32(row.Cells[5].Value.ToString());
+                    shift.addSettingShift(set_num, name, time_start, time_end, no_manager, no_recept, no_janitor);
+                }
+            }
+            MessageBox.Show("Added Setting", "Add Setting", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

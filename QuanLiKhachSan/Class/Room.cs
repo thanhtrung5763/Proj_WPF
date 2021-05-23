@@ -199,5 +199,25 @@ namespace QuanLiKhachSan
                 return false;
             }
         }
+        public bool updateStatus(int rid, bool stt)
+        {
+            com.CommandText = "Update Rooms Set status_id=@stt Where room_id=@rid";
+            com.Parameters.Add("@rid", SqlDbType.Int).Value = rid;
+            com.Parameters.Add("@stt", SqlDbType.Bit).Value = stt;
+            mydb.openConnection();
+
+            if (com.ExecuteNonQuery() == 1)
+            {
+                com.Parameters.Clear();
+                mydb.closeConnection();
+                return true;
+            }
+            else
+            {
+                com.Parameters.Clear();
+                mydb.closeConnection();
+                return false;
+            }
+        }
     }
 }

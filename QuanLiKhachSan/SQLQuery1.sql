@@ -157,13 +157,12 @@ Create Table dbo.Shifts (
 	num_manager INT NULL,
 	num_receptionist INT NULL,
 	num_janitor INT NULL
-
 	CONSTRAINT [PK_Shifts] PRIMARY KEY CLUSTERED ([shift_id] ASC)
 )
 GO
-
-
-Select * From Employees Where title='Manager'
+Select * From Shifts
+Delete From Shifts
+Drop Table Shifts
 
 Create Table dbo.Schedules (
 	schedule_id INT NOT NULL,
@@ -181,7 +180,8 @@ Create Table dbo.Schedules (
 	Friday NVarChar(20) NUll,
 	Saturday NVarChar(20) NUll,
 	Sunday NVarChar(20) NUll,
-
+	CONSTRAINT [PK_Schedules] PRIMARY KEY CLUSTERED ([shift_id] ASC,[schedule_id]),
+	FOREIGN KEY ([schedule_id]) REFERENCES [dbo].[Shifts] ([schedule_id])
 )
 GO
 Delete From dbo.Schedules
@@ -201,3 +201,6 @@ CREATE TABLE [dbo].[CheckInOut] (
     FOREIGN KEY ([emp_id]) REFERENCES [dbo].[Employees] ([emp_id]),
     FOREIGN KEY ([shift_id]) REFERENCES [dbo].[Shifts] ([shift_id])
 );
+Select * From CheckInOut
+Delete From CheckInOut
+Drop Table CheckInOut

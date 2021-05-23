@@ -29,11 +29,15 @@ namespace QuanLiKhachSan
         {
             if(radioManager.Checked)
             {
-                Application.Run(new ManagerForm(username_TB.Text.ToString()));
+                Application.Run(new ManagerForm());
             }
-            else if(radioEmp.Checked)
+            else if(radioRecept.Checked)
             {
-                Application.Run(new ReceptionistForm(username_TB.Text.ToString()));
+                Application.Run(new ReceptionistForm());
+            }
+            else if(radioJan.Checked)
+            {
+                Application.Run(new JanitorForm());
             }
         }
     
@@ -49,9 +53,13 @@ namespace QuanLiKhachSan
             {
                 com.CommandText += " AND (title='Manager' OR title = 'Admin')";
             }
-            else if (radioEmp.Checked)
+            else if (radioRecept.Checked)
             {
-                com.CommandText += " AND (title='Receptionist' OR title='Janitor')";
+                com.CommandText += " AND (title='Receptionist')";
+            }
+            else if(radioJan.Checked)
+            {
+                com.CommandText += " AND (title='Janitor')";
             }
             com.Parameters.Add("@user", SqlDbType.VarChar).Value = username_TB.Text;
             com.Parameters.Add("@pass", SqlDbType.VarChar).Value = password_TB.Text;
@@ -62,6 +70,7 @@ namespace QuanLiKhachSan
             if (dt.Rows.Count > 0)
             {
                 MessageBox.Show("Login Successful");
+                Globals.SetGlobalUserId(Convert.ToInt32(dt.Rows[0][0].ToString()));
                 this.DialogResult = DialogResult.OK; 
             }
             else

@@ -25,11 +25,8 @@ namespace QuanLiKhachSan
             com = new SqlCommand();
             con = new SqlConnection(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=projectDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
-            bdate_DTP.Format = DateTimePickerFormat.Custom;
-            bdate_DTP.CustomFormat = "dd/MM/yyyy";
-            hdate_DTP.Format = DateTimePickerFormat.Custom;
-            hdate_DTP.CustomFormat = "dd/MM/yyyy";
-            employee_DGV.BackgroundColor = System.Drawing.SystemColors.Control;
+            
+            
         }
 
         private void chophoto_BT_Click(object sender, EventArgs e)
@@ -69,12 +66,30 @@ namespace QuanLiKhachSan
             if (tabControl1.SelectedTab == tabControl1.TabPages[1])
             {
                 this.ParentForm.Width = 1080;
-                this.ParentForm.Height = 585;
+                this.ParentForm.Height = 610;
+                bdateT2_DTP.Format = DateTimePickerFormat.Custom;
+                bdateT2_DTP.CustomFormat = "dd/MM/yyyy";
+                hdateT2_DTP.Format = DateTimePickerFormat.Custom;
+                hdateT2_DTP.CustomFormat = "dd/MM/yyyy";
                 com.CommandText = "SELECT * FROM Employees";
                 employee_DGV.ReadOnly = true;
                 employee_DGV.DataSource = emp.getEmployees(com);
                 employee_DGV.Columns[5].DefaultCellStyle.Format = "dd/MM/yyyy";
                 employee_DGV.Columns[6].DefaultCellStyle.Format = "dd/MM/yyyy";
+                employee_DGV.BackgroundColor = System.Drawing.SystemColors.Control;
+                employee_DGV.Columns[0].HeaderText = "Employee ID";
+                employee_DGV.Columns[1].HeaderText = "First Name";
+                employee_DGV.Columns[2].HeaderText = "Last Name";
+
+                employee_DGV.Columns[3].HeaderText = "Email";
+                employee_DGV.Columns[4].HeaderText = "Gender";
+                employee_DGV.Columns[5].HeaderText = "Birth Date";
+                employee_DGV.Columns[6].HeaderText = "Hire Date";
+                employee_DGV.Columns[7].HeaderText = "Title";
+                employee_DGV.Columns[8].HeaderText = "Reports To";
+                employee_DGV.Columns[9].HeaderText = "Address";
+                employee_DGV.Columns[10].HeaderText = "Photo";
+                employee_DGV.Columns[11].HeaderText = "Phone";
                 DataGridViewImageColumn picCol = new DataGridViewImageColumn();
                 picCol = (DataGridViewImageColumn)employee_DGV.Columns[10];
                 picCol.ImageLayout = DataGridViewImageCellLayout.Stretch;
@@ -189,6 +204,10 @@ namespace QuanLiKhachSan
 
         private void edit_BT_Click(object sender, EventArgs e)
         {
+            int acc_id = int.Parse(accID_TB.Text);
+            string user = usernameT2_TB.Text;
+            string pass = passwordT2_TB.Text;
+
             int id = int.Parse(empID_TB.Text);
             string fname = fnameT2_TB.Text;
             string lname = lnameT2_TB.Text;
@@ -212,7 +231,7 @@ namespace QuanLiKhachSan
                 try
                 {
                     photoT2_PB.Image.Save(pic, photoT2_PB.Image.RawFormat);
-                    if (emp.updateEmployee(id, fname, lname, email, title, gender, bdate, hdate, adrs, phone, pic))
+                    if (emp.updateEmployee(id, fname, lname, email, title, gender, bdate, hdate, adrs, phone, pic) && acc.updateAccount(id, user, pass))
                     {
                         MessageBox.Show("Employee Infomation Updated", "Edit Employee", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         tabControl1_SelectedIndexChanged(null, null);

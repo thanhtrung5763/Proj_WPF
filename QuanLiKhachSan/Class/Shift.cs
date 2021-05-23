@@ -29,21 +29,43 @@ namespace QuanLiKhachSan
             da.Fill(dt);
             return dt;
         }
-        public int numOfShift()
+        public int numOfSetting()
         {
-            com.CommandText = "Select Count(*) From Shifts";
+            com.CommandText = "Select Count(distinct set_id) From Shifts";
             com.Connection = mydb.getConnection;
             mydb.openConnection();
             int num = (int)com.ExecuteScalar();
             mydb.closeConnection();
             return num;
         }
-        public bool addShift(string name, TimeSpan time_start, TimeSpan time_end, int no_manager, int no_recept, int no_janitor)
+        public DataTable getAllSettingID()
         {
-            int num = this.numOfShift();
-            com.CommandText = "Insert Into Shifts(shift_id, shift_name, time_start, time_end, num_manager, num_receptionist, num_janitor)" +
-                                "Values(@sid, @name, @tstart, @tend, @no_manager, @no_recept, @no_janitor)";
-            com.Parameters.Add("@sid", SqlDbType.Int).Value = num + 1;
+            com.CommandText = "Select distinct set_id From Shifts";
+            com.Connection = mydb.getConnection;
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+        public int getShiftNumWithSetNum(int set_num)
+        {
+            com.CommandText = "Select Count(shift_id) From Shifts Where set_id = @set_id";
+            com.Parameters.Add("@set_id", SqlDbType.Int).Value = set_num;
+            com.Connection = mydb.getConnection;
+            mydb.openConnection();
+            int num = (int)com.ExecuteScalar();
+            mydb.closeConnection();
+            com.Parameters.Clear();
+            return num;
+        }
+        public bool addSettingShift(int set_num, string name, TimeSpan time_start, TimeSpan time_end, int no_manager, int no_recept, int no_janitor)
+        {
+            
+            int shift_num = this.getShiftNumWithSetNum(set_num) + 1;
+            com.CommandText = "Insert Into Shifts(set_id, shift_id, shift_name, time_start, time_end, num_manager, num_receptionist, num_janitor)" +
+                                "Values(@set_id, @sid, @name, @tstart, @tend, @no_manager, @no_recept, @no_janitor)";
+            com.Parameters.Add("@set_id", SqlDbType.Int).Value = set_num;
+            com.Parameters.Add("@sid", SqlDbType.Int).Value = shift_num;
             com.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
             com.Parameters.Add("@tstart", SqlDbType.Time).Value = time_start;
             com.Parameters.Add("@tend", SqlDbType.Time).Value = time_end;
@@ -93,10 +115,22 @@ namespace QuanLiKhachSan
             com.Parameters.Clear();
             return Convert.ToInt32(dt.Rows[0]["shift_id"]);
         }
-        public DataTable getInfoShiftById(int shift_id)
+        public DataTable getInfoShiftById(int shift_id, int set_id)
         {
-            com.CommandText = "Select * From Shifts Where shift_id =@sid";
+            com.CommandText = "Select * From Shifts Where set_id = @set_id and shift_id = @sid";
             com.Parameters.Add("@sid", SqlDbType.Int).Value = shift_id;
+            com.Parameters.Add("@set_id", SqlDbType.Int).Value = set_id;
+            com.Connection = mydb.getConnection;
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            com.Parameters.Clear();
+            return dt;
+        }
+        public DataTable getInfoSetById(int set_id)
+        {
+            com.CommandText = "Select shift_name, time_start, time_end, num_manager, num_receptionist, num_janitor From Shifts Where set_id =@set_id";
+            com.Parameters.Add("@set_id", SqlDbType.Int).Value = set_id;
             com.Connection = mydb.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
@@ -220,7 +254,6 @@ namespace QuanLiKhachSan
                 if (idx == pre_idx)
                     idx = (idx + 1) % emps;
             }
-            // Note: search trong ma trận nếu nhân viên > 3 ca trong một ngày thì thay bằng nhân viên ko có trong ngày đó
 
             for (int i = 0; i < shifts; i++)
             {

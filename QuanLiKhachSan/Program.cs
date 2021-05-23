@@ -22,6 +22,7 @@ namespace QuanLiKhachSan
             frm.Height = 500;
             frm.Width = 1000;
             Application.Run(frm);*/
+
             LoginForm logForm = new LoginForm();
             if (logForm.ShowDialog() == DialogResult.OK)
             {
