@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Guna.UI2">
-      <HintPath>..\..\..\Desktop\Guna\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\Guna\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -61,10 +61,10 @@
       <DependentUpon>editInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\Globals.cs" />
-    <Compile Include="JanitorForm.cs">
+    <Compile Include="JanitorForm\JanitorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="JanitorForm.Designer.cs">
+    <Compile Include="JanitorForm\JanitorForm.Designer.cs">
       <DependentUpon>JanitorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ManagerForm\Check_in_outForm.cs">
@@ -163,7 +163,7 @@
     <EmbeddedResource Include="editInfoForm.resx">
       <DependentUpon>editInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="JanitorForm.resx">
+    <EmbeddedResource Include="JanitorForm\JanitorForm.resx">
       <DependentUpon>JanitorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerForm\Check_in_outForm.resx">
