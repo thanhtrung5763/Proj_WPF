@@ -53,6 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Guest\BookRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Guest\BookRoomForm.Designer.cs">
+      <DependentUpon>BookRoomForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Guest\CheckInOutGuestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Guest\CheckInOutGuestForm.Designer.cs">
+      <DependentUpon>CheckInOutGuestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Class\Check_in_out.cs" />
     <Compile Include="editInfoForm.cs">
       <SubType>Form</SubType>
@@ -61,6 +73,25 @@
       <DependentUpon>editInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\Globals.cs" />
+    <Compile Include="Guest.cs" />
+    <Compile Include="Guest\GuestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Guest\GuestForm.Designer.cs">
+      <DependentUpon>GuestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Guest\GuestHistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Guest\GuestHistoryForm.Designer.cs">
+      <DependentUpon>GuestHistoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Guest\GuestInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Guest\GuestInfoForm.Designer.cs">
+      <DependentUpon>GuestInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="JanitorForm\JanitorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +152,19 @@
       <DependentUpon>ManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\MY_DB.cs" />
+    <Compile Include="ReceptionistForm\mngPaymentInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReceptionistForm\mngPaymentInForm.Designer.cs">
+      <DependentUpon>mngPaymentInForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerForm\mngPaymentInFormForManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerForm\mngPaymentInFormForManager.Designer.cs">
+      <DependentUpon>mngPaymentInFormForManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\PaymentGuest.cs" />
     <Compile Include="ReceptionistForm\ManagerJanitorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,7 +189,7 @@
     <Compile Include="ReceptionistForm\ManagerScheduleJanitorForm.designer.cs">
       <DependentUpon>ManagerScheduleJanitorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Class\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ManagerForm\ManageEmployeesForm.cs">
       <SubType>Form</SubType>
@@ -160,8 +204,30 @@
     <Compile Include="ReceptionistForm\ReceptionistForm.designer.cs">
       <DependentUpon>ReceptionistForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Class\Reservation.cs" />
+    <Compile Include="RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterForm.Designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Guest\BookRoomForm.resx">
+      <DependentUpon>BookRoomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Guest\CheckInOutGuestForm.resx">
+      <DependentUpon>CheckInOutGuestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="editInfoForm.resx">
       <DependentUpon>editInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Guest\GuestForm.resx">
+      <DependentUpon>GuestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Guest\GuestHistoryForm.resx">
+      <DependentUpon>GuestHistoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Guest\GuestInfoForm.resx">
+      <DependentUpon>GuestInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="JanitorForm\JanitorForm.resx">
       <DependentUpon>JanitorForm.cs</DependentUpon>
@@ -190,6 +256,12 @@
     <EmbeddedResource Include="ManagerForm\ManageSchedulesForm.resx">
       <DependentUpon>ManageSchedulesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReceptionistForm\mngPaymentInForm.resx">
+      <DependentUpon>mngPaymentInForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerForm\mngPaymentInFormForManager.resx">
+      <DependentUpon>mngPaymentInFormForManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReceptionistForm\ManagerJanitorForm.resx">
       <DependentUpon>ManagerJanitorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -217,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReceptionistForm\ReceptionistForm.resx">
       <DependentUpon>ReceptionistForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterForm.resx">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

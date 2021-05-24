@@ -39,6 +39,10 @@ namespace QuanLiKhachSan
             {
                 Application.Run(new JanitorForm());
             }
+            else if(radioGuest.Checked)
+            {
+                Application.Run(new GuestForm());
+            }
         }
     
 
@@ -61,6 +65,10 @@ namespace QuanLiKhachSan
             {
                 com.CommandText += " AND (title='Janitor')";
             }
+            else if(radioGuest.Checked)
+            {
+                com.CommandText = "Select * From Guest Where username=@user AND password=@pass";
+            }
             com.Parameters.Add("@user", SqlDbType.VarChar).Value = username_TB.Text;
             com.Parameters.Add("@pass", SqlDbType.VarChar).Value = password_TB.Text;
 
@@ -79,6 +87,12 @@ namespace QuanLiKhachSan
             }
            
             
+        }
+
+        private void reg_LLB_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            RegisterForm frm = new RegisterForm();
+            frm.Show();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace QuanLiKhachSan
 {
-    partial class ReceptionistForm
+    partial class GuestForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,18 +31,16 @@ namespace QuanLiKhachSan
         {
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.mngSchedules_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.Check_in_out_BT = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.mngRooms_BT = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.mngJani_BT = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.mngHis_BT = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.book_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.edit_LLB = new System.Windows.Forms.LinkLabel();
             this.logOut_LLB = new System.Windows.Forms.LinkLabel();
             this.welcome_LB = new System.Windows.Forms.Label();
-            this.avatar_PB = new System.Windows.Forms.PictureBox();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox3 = new Guna.UI2.WinForms.Guna2ControlBox();
-            this.mngPayment_BT = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.avatar_PB = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatar_PB)).BeginInit();
@@ -55,41 +53,20 @@ namespace QuanLiKhachSan
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(446, 87);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1016, 786);
+            this.panel2.Size = new System.Drawing.Size(938, 763);
             this.panel2.TabIndex = 5;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(36)))), ((int)(((byte)(39)))));
-            this.panel1.Controls.Add(this.mngPayment_BT);
-            this.panel1.Controls.Add(this.mngSchedules_BT);
             this.panel1.Controls.Add(this.Check_in_out_BT);
-            this.panel1.Controls.Add(this.mngRooms_BT);
-            this.panel1.Controls.Add(this.mngJani_BT);
+            this.panel1.Controls.Add(this.mngHis_BT);
+            this.panel1.Controls.Add(this.book_BT);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 87);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(446, 786);
+            this.panel1.Size = new System.Drawing.Size(446, 763);
             this.panel1.TabIndex = 4;
-            // 
-            // mngSchedules_BT
-            // 
-            this.mngSchedules_BT.CheckedState.Parent = this.mngSchedules_BT;
-            this.mngSchedules_BT.CustomImages.Parent = this.mngSchedules_BT;
-            this.mngSchedules_BT.FillColor = System.Drawing.Color.Transparent;
-            this.mngSchedules_BT.FillColor2 = System.Drawing.Color.Transparent;
-            this.mngSchedules_BT.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.mngSchedules_BT.ForeColor = System.Drawing.Color.White;
-            this.mngSchedules_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.mngSchedules_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
-            this.mngSchedules_BT.HoverState.Parent = this.mngSchedules_BT;
-            this.mngSchedules_BT.Location = new System.Drawing.Point(0, 291);
-            this.mngSchedules_BT.Name = "mngSchedules_BT";
-            this.mngSchedules_BT.ShadowDecoration.Parent = this.mngSchedules_BT;
-            this.mngSchedules_BT.Size = new System.Drawing.Size(466, 69);
-            this.mngSchedules_BT.TabIndex = 10;
-            this.mngSchedules_BT.Text = "Manage Schedules";
-            this.mngSchedules_BT.Click += new System.EventHandler(this.mngSchedules_BT_Click);
             // 
             // Check_in_out_BT
             // 
@@ -102,7 +79,7 @@ namespace QuanLiKhachSan
             this.Check_in_out_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Check_in_out_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
             this.Check_in_out_BT.HoverState.Parent = this.Check_in_out_BT;
-            this.Check_in_out_BT.Location = new System.Drawing.Point(0, 398);
+            this.Check_in_out_BT.Location = new System.Drawing.Point(0, 302);
             this.Check_in_out_BT.Name = "Check_in_out_BT";
             this.Check_in_out_BT.ShadowDecoration.Parent = this.Check_in_out_BT;
             this.Check_in_out_BT.Size = new System.Drawing.Size(466, 69);
@@ -110,44 +87,44 @@ namespace QuanLiKhachSan
             this.Check_in_out_BT.Text = "Check In-Out";
             this.Check_in_out_BT.Click += new System.EventHandler(this.Check_in_out_BT_Click);
             // 
-            // mngRooms_BT
+            // mngHis_BT
             // 
-            this.mngRooms_BT.CheckedState.Parent = this.mngRooms_BT;
-            this.mngRooms_BT.CustomImages.Parent = this.mngRooms_BT;
-            this.mngRooms_BT.FillColor = System.Drawing.Color.Transparent;
-            this.mngRooms_BT.FillColor2 = System.Drawing.Color.Transparent;
-            this.mngRooms_BT.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.mngRooms_BT.ForeColor = System.Drawing.Color.White;
-            this.mngRooms_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.mngRooms_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
-            this.mngRooms_BT.HoverState.Parent = this.mngRooms_BT;
-            this.mngRooms_BT.Location = new System.Drawing.Point(0, 194);
-            this.mngRooms_BT.Name = "mngRooms_BT";
-            this.mngRooms_BT.ShadowDecoration.Parent = this.mngRooms_BT;
-            this.mngRooms_BT.Size = new System.Drawing.Size(466, 69);
-            this.mngRooms_BT.TabIndex = 7;
-            this.mngRooms_BT.Text = "Manage Rooms";
-            this.mngRooms_BT.Click += new System.EventHandler(this.mngRooms_BT_Click);
+            this.mngHis_BT.CheckedState.Parent = this.mngHis_BT;
+            this.mngHis_BT.CustomImages.Parent = this.mngHis_BT;
+            this.mngHis_BT.FillColor = System.Drawing.Color.Transparent;
+            this.mngHis_BT.FillColor2 = System.Drawing.Color.Transparent;
+            this.mngHis_BT.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.mngHis_BT.ForeColor = System.Drawing.Color.White;
+            this.mngHis_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.mngHis_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
+            this.mngHis_BT.HoverState.Parent = this.mngHis_BT;
+            this.mngHis_BT.Location = new System.Drawing.Point(0, 194);
+            this.mngHis_BT.Name = "mngHis_BT";
+            this.mngHis_BT.ShadowDecoration.Parent = this.mngHis_BT;
+            this.mngHis_BT.Size = new System.Drawing.Size(466, 69);
+            this.mngHis_BT.TabIndex = 7;
+            this.mngHis_BT.Text = "Manage History";
+            this.mngHis_BT.Click += new System.EventHandler(this.mngHis_BT_Click);
             // 
-            // mngJani_BT
+            // book_BT
             // 
-            this.mngJani_BT.BackColor = System.Drawing.Color.Transparent;
-            this.mngJani_BT.CheckedState.Parent = this.mngJani_BT;
-            this.mngJani_BT.CustomImages.Parent = this.mngJani_BT;
-            this.mngJani_BT.FillColor = System.Drawing.Color.Transparent;
-            this.mngJani_BT.FillColor2 = System.Drawing.Color.Transparent;
-            this.mngJani_BT.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.mngJani_BT.ForeColor = System.Drawing.Color.White;
-            this.mngJani_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.mngJani_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
-            this.mngJani_BT.HoverState.Parent = this.mngJani_BT;
-            this.mngJani_BT.Location = new System.Drawing.Point(0, 91);
-            this.mngJani_BT.Name = "mngJani_BT";
-            this.mngJani_BT.ShadowDecoration.Parent = this.mngJani_BT;
-            this.mngJani_BT.Size = new System.Drawing.Size(466, 69);
-            this.mngJani_BT.TabIndex = 5;
-            this.mngJani_BT.Text = "Manager Janitors";
-            this.mngJani_BT.Click += new System.EventHandler(this.mngJani_BT_Click);
+            this.book_BT.BackColor = System.Drawing.Color.Transparent;
+            this.book_BT.CheckedState.Parent = this.book_BT;
+            this.book_BT.CustomImages.Parent = this.book_BT;
+            this.book_BT.FillColor = System.Drawing.Color.Transparent;
+            this.book_BT.FillColor2 = System.Drawing.Color.Transparent;
+            this.book_BT.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.book_BT.ForeColor = System.Drawing.Color.White;
+            this.book_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.book_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
+            this.book_BT.HoverState.Parent = this.book_BT;
+            this.book_BT.Location = new System.Drawing.Point(0, 91);
+            this.book_BT.Name = "book_BT";
+            this.book_BT.ShadowDecoration.Parent = this.book_BT;
+            this.book_BT.Size = new System.Drawing.Size(466, 69);
+            this.book_BT.TabIndex = 5;
+            this.book_BT.Text = "Book Room";
+            this.book_BT.Click += new System.EventHandler(this.book_BT_Click);
             // 
             // guna2GradientPanel1
             // 
@@ -163,7 +140,7 @@ namespace QuanLiKhachSan
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.ShadowDecoration.Parent = this.guna2GradientPanel1;
-            this.guna2GradientPanel1.Size = new System.Drawing.Size(1462, 87);
+            this.guna2GradientPanel1.Size = new System.Drawing.Size(1384, 87);
             this.guna2GradientPanel1.TabIndex = 6;
             // 
             // edit_LLB
@@ -203,16 +180,6 @@ namespace QuanLiKhachSan
             this.welcome_LB.TabIndex = 21;
             this.welcome_LB.Text = "Welcome Back";
             // 
-            // avatar_PB
-            // 
-            this.avatar_PB.BackColor = System.Drawing.Color.Transparent;
-            this.avatar_PB.Location = new System.Drawing.Point(18, 10);
-            this.avatar_PB.Name = "avatar_PB";
-            this.avatar_PB.Size = new System.Drawing.Size(90, 72);
-            this.avatar_PB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.avatar_PB.TabIndex = 20;
-            this.avatar_PB.TabStop = false;
-            // 
             // guna2ControlBox2
             // 
             this.guna2ControlBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -221,7 +188,7 @@ namespace QuanLiKhachSan
             this.guna2ControlBox2.FillColor = System.Drawing.Color.Transparent;
             this.guna2ControlBox2.HoverState.Parent = this.guna2ControlBox2;
             this.guna2ControlBox2.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox2.Location = new System.Drawing.Point(1396, 16);
+            this.guna2ControlBox2.Location = new System.Drawing.Point(1318, 16);
             this.guna2ControlBox2.Name = "guna2ControlBox2";
             this.guna2ControlBox2.ShadowDecoration.Parent = this.guna2ControlBox2;
             this.guna2ControlBox2.Size = new System.Drawing.Size(56, 52);
@@ -236,43 +203,34 @@ namespace QuanLiKhachSan
             this.guna2ControlBox3.FillColor = System.Drawing.Color.Transparent;
             this.guna2ControlBox3.HoverState.Parent = this.guna2ControlBox3;
             this.guna2ControlBox3.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox3.Location = new System.Drawing.Point(1336, 16);
+            this.guna2ControlBox3.Location = new System.Drawing.Point(1258, 16);
             this.guna2ControlBox3.Name = "guna2ControlBox3";
             this.guna2ControlBox3.ShadowDecoration.Parent = this.guna2ControlBox3;
             this.guna2ControlBox3.Size = new System.Drawing.Size(54, 52);
             this.guna2ControlBox3.TabIndex = 18;
             // 
-            // mngPayment_BT
+            // avatar_PB
             // 
-            this.mngPayment_BT.CheckedState.Parent = this.mngPayment_BT;
-            this.mngPayment_BT.CustomImages.Parent = this.mngPayment_BT;
-            this.mngPayment_BT.FillColor = System.Drawing.Color.Transparent;
-            this.mngPayment_BT.FillColor2 = System.Drawing.Color.Transparent;
-            this.mngPayment_BT.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.mngPayment_BT.ForeColor = System.Drawing.Color.White;
-            this.mngPayment_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.mngPayment_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
-            this.mngPayment_BT.HoverState.Parent = this.mngPayment_BT;
-            this.mngPayment_BT.Location = new System.Drawing.Point(0, 495);
-            this.mngPayment_BT.Name = "mngPayment_BT";
-            this.mngPayment_BT.ShadowDecoration.Parent = this.mngPayment_BT;
-            this.mngPayment_BT.Size = new System.Drawing.Size(466, 69);
-            this.mngPayment_BT.TabIndex = 11;
-            this.mngPayment_BT.Text = "Manage Payment";
-            this.mngPayment_BT.Click += new System.EventHandler(this.mngPayment_BT_Click);
+            this.avatar_PB.BackColor = System.Drawing.Color.Transparent;
+            this.avatar_PB.Location = new System.Drawing.Point(18, 10);
+            this.avatar_PB.Name = "avatar_PB";
+            this.avatar_PB.Size = new System.Drawing.Size(90, 72);
+            this.avatar_PB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.avatar_PB.TabIndex = 20;
+            this.avatar_PB.TabStop = false;
             // 
-            // ReceptionistForm
+            // GuestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1462, 873);
+            this.ClientSize = new System.Drawing.Size(1384, 850);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.guna2GradientPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ReceptionistForm";
-            this.Text = "Receptionist Form";
-            this.Load += new System.EventHandler(this.ReceptionistForm_Load);
+            this.Name = "GuestForm";
+            this.Text = "GuestForm";
+            this.Load += new System.EventHandler(this.GuestForm_Load);
             this.panel1.ResumeLayout(false);
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2GradientPanel1.PerformLayout();
@@ -287,8 +245,8 @@ namespace QuanLiKhachSan
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private Guna.UI2.WinForms.Guna2GradientButton Check_in_out_BT;
-        private Guna.UI2.WinForms.Guna2GradientButton mngRooms_BT;
-        private Guna.UI2.WinForms.Guna2GradientButton mngJani_BT;
+        private Guna.UI2.WinForms.Guna2GradientButton mngHis_BT;
+        private Guna.UI2.WinForms.Guna2GradientButton book_BT;
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
         private System.Windows.Forms.LinkLabel edit_LLB;
         private System.Windows.Forms.LinkLabel logOut_LLB;
@@ -296,7 +254,5 @@ namespace QuanLiKhachSan
         private System.Windows.Forms.PictureBox avatar_PB;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox3;
-        private Guna.UI2.WinForms.Guna2GradientButton mngSchedules_BT;
-        private Guna.UI2.WinForms.Guna2GradientButton mngPayment_BT;
     }
 }

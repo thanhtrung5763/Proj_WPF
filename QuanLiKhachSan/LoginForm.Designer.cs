@@ -32,6 +32,8 @@ namespace QuanLiKhachSan
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radioGuest = new System.Windows.Forms.RadioButton();
+            this.radioJan = new System.Windows.Forms.RadioButton();
             this.radioRecept = new System.Windows.Forms.RadioButton();
             this.radioManager = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -45,7 +47,7 @@ namespace QuanLiKhachSan
             this.username_TB = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
-            this.radioJan = new System.Windows.Forms.RadioButton();
+            this.reg_LLB = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.guna2GradientPanel1.SuspendLayout();
@@ -57,7 +59,7 @@ namespace QuanLiKhachSan
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(170, 22);
+            this.label1.Location = new System.Drawing.Point(238, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(202, 50);
             this.label1.TabIndex = 0;
@@ -65,19 +67,44 @@ namespace QuanLiKhachSan
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.radioGuest);
             this.panel1.Controls.Add(this.radioJan);
             this.panel1.Controls.Add(this.radioRecept);
             this.panel1.Controls.Add(this.radioManager);
-            this.panel1.Location = new System.Drawing.Point(21, 102);
+            this.panel1.Location = new System.Drawing.Point(6, 108);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(524, 52);
+            this.panel1.Size = new System.Drawing.Size(670, 52);
             this.panel1.TabIndex = 6;
+            // 
+            // radioGuest
+            // 
+            this.radioGuest.AutoSize = true;
+            this.radioGuest.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioGuest.Location = new System.Drawing.Point(525, 13);
+            this.radioGuest.Name = "radioGuest";
+            this.radioGuest.Size = new System.Drawing.Size(107, 36);
+            this.radioGuest.TabIndex = 10;
+            this.radioGuest.TabStop = true;
+            this.radioGuest.Text = "Guest";
+            this.radioGuest.UseVisualStyleBackColor = true;
+            // 
+            // radioJan
+            // 
+            this.radioJan.AutoSize = true;
+            this.radioJan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioJan.Location = new System.Drawing.Point(388, 13);
+            this.radioJan.Name = "radioJan";
+            this.radioJan.Size = new System.Drawing.Size(117, 36);
+            this.radioJan.TabIndex = 9;
+            this.radioJan.TabStop = true;
+            this.radioJan.Text = "Janitor";
+            this.radioJan.UseVisualStyleBackColor = true;
             // 
             // radioRecept
             // 
             this.radioRecept.AutoSize = true;
             this.radioRecept.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioRecept.Location = new System.Drawing.Point(176, 12);
+            this.radioRecept.Location = new System.Drawing.Point(194, 13);
             this.radioRecept.Name = "radioRecept";
             this.radioRecept.Size = new System.Drawing.Size(176, 36);
             this.radioRecept.TabIndex = 8;
@@ -89,7 +116,7 @@ namespace QuanLiKhachSan
             // 
             this.radioManager.AutoSize = true;
             this.radioManager.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioManager.Location = new System.Drawing.Point(17, 12);
+            this.radioManager.Location = new System.Drawing.Point(35, 13);
             this.radioManager.Name = "radioManager";
             this.radioManager.Size = new System.Drawing.Size(141, 36);
             this.radioManager.TabIndex = 7;
@@ -168,18 +195,19 @@ namespace QuanLiKhachSan
             // guna2ShadowPanel1
             // 
             this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel1.Controls.Add(this.reg_LLB);
             this.guna2ShadowPanel1.Controls.Add(this.login_BT);
             this.guna2ShadowPanel1.Controls.Add(this.password_TB);
             this.guna2ShadowPanel1.Controls.Add(this.panel1);
             this.guna2ShadowPanel1.Controls.Add(this.label1);
             this.guna2ShadowPanel1.Controls.Add(this.username_TB);
             this.guna2ShadowPanel1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2ShadowPanel1.Location = new System.Drawing.Point(603, 72);
+            this.guna2ShadowPanel1.Location = new System.Drawing.Point(523, 72);
             this.guna2ShadowPanel1.Name = "guna2ShadowPanel1";
             this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel1.ShadowDepth = 0;
             this.guna2ShadowPanel1.ShadowShift = 0;
-            this.guna2ShadowPanel1.Size = new System.Drawing.Size(548, 714);
+            this.guna2ShadowPanel1.Size = new System.Drawing.Size(676, 714);
             this.guna2ShadowPanel1.TabIndex = 15;
             // 
             // login_BT
@@ -195,7 +223,7 @@ namespace QuanLiKhachSan
             this.login_BT.Font = new System.Drawing.Font("Segoe UI Semibold", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_BT.ForeColor = System.Drawing.Color.White;
             this.login_BT.HoverState.Parent = this.login_BT;
-            this.login_BT.Location = new System.Drawing.Point(86, 431);
+            this.login_BT.Location = new System.Drawing.Point(154, 433);
             this.login_BT.Name = "login_BT";
             this.login_BT.ShadowDecoration.Parent = this.login_BT;
             this.login_BT.Size = new System.Drawing.Size(394, 69);
@@ -218,7 +246,7 @@ namespace QuanLiKhachSan
             this.password_TB.FocusedState.Parent = this.password_TB;
             this.password_TB.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.password_TB.HoverState.Parent = this.password_TB;
-            this.password_TB.Location = new System.Drawing.Point(86, 308);
+            this.password_TB.Location = new System.Drawing.Point(154, 310);
             this.password_TB.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.password_TB.Name = "password_TB";
             this.password_TB.PasswordChar = '\0';
@@ -244,7 +272,7 @@ namespace QuanLiKhachSan
             this.username_TB.FocusedState.Parent = this.username_TB;
             this.username_TB.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.username_TB.HoverState.Parent = this.username_TB;
-            this.username_TB.Location = new System.Drawing.Point(86, 208);
+            this.username_TB.Location = new System.Drawing.Point(154, 210);
             this.username_TB.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.username_TB.Name = "username_TB";
             this.username_TB.PasswordChar = '\0';
@@ -258,17 +286,17 @@ namespace QuanLiKhachSan
             // 
             this.guna2Elipse1.TargetControl = this;
             // 
-            // radioJan
+            // reg_LLB
             // 
-            this.radioJan.AutoSize = true;
-            this.radioJan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioJan.Location = new System.Drawing.Point(370, 12);
-            this.radioJan.Name = "radioJan";
-            this.radioJan.Size = new System.Drawing.Size(117, 36);
-            this.radioJan.TabIndex = 9;
-            this.radioJan.TabStop = true;
-            this.radioJan.Text = "Janitor";
-            this.radioJan.UseVisualStyleBackColor = true;
+            this.reg_LLB.AutoSize = true;
+            this.reg_LLB.Font = new System.Drawing.Font("Century Gothic", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reg_LLB.Location = new System.Drawing.Point(242, 400);
+            this.reg_LLB.Name = "reg_LLB";
+            this.reg_LLB.Size = new System.Drawing.Size(352, 24);
+            this.reg_LLB.TabIndex = 17;
+            this.reg_LLB.TabStop = true;
+            this.reg_LLB.Text = "Don\'t Have An Account? Register";
+            this.reg_LLB.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.reg_LLB_LinkClicked);
             // 
             // LoginForm
             // 
@@ -310,6 +338,8 @@ namespace QuanLiKhachSan
         public Guna.UI2.WinForms.Guna2TextBox username_TB;
         public Guna.UI2.WinForms.Guna2TextBox password_TB;
         private System.Windows.Forms.RadioButton radioJan;
+        private System.Windows.Forms.RadioButton radioGuest;
+        private System.Windows.Forms.LinkLabel reg_LLB;
     }
 }
 

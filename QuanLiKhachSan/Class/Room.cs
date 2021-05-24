@@ -23,6 +23,17 @@ namespace QuanLiKhachSan
             da.Fill(dt);
             return dt;
         }
+        public DataTable getAllRoomsByType(int room_type_id)
+        {
+            com.CommandText = "Select room_id, room_type_name, room_capacity, room_num_beds, room_price, status_name" +
+                " FROM Rooms, RoomTypes, RoomStatus" +
+                $" WHERE Rooms.room_type_id = RoomTypes.room_type_id and Rooms.status_id = RoomStatus.status_id And Rooms.room_type_id={room_type_id}";
+            com.Connection = mydb.getConnection;
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
         public DataTable getRoomType()
         {
             com.CommandText = "Select room_type_name, room_type_id" +
@@ -202,6 +213,7 @@ namespace QuanLiKhachSan
         public bool updateStatus(int rid, bool stt)
         {
             com.CommandText = "Update Rooms Set status_id=@stt Where room_id=@rid";
+            com.Connection = mydb.getConnection;
             com.Parameters.Add("@rid", SqlDbType.Int).Value = rid;
             com.Parameters.Add("@stt", SqlDbType.Bit).Value = stt;
             mydb.openConnection();

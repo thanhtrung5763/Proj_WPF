@@ -54,6 +54,8 @@ namespace QuanLiKhachSan
                 this.Check_in_out_BT.FillColor2 = Color.Transparent;
                 this.mngPayment_BT.FillColor = Color.Transparent;
                 this.mngPayment_BT.FillColor2 = Color.Transparent;
+                this.mngPayment2_BT.FillColor = Color.Transparent;
+                this.mngPayment2_BT.FillColor2 = Color.Transparent;
 
                 this.employ_BT.FillColor = Color.FromArgb(0, 192, 192);
                 this.employ_BT.FillColor2 = Color.Teal;
@@ -88,6 +90,8 @@ namespace QuanLiKhachSan
                 this.Check_in_out_BT.FillColor2 = Color.Transparent;
                 this.mngPayment_BT.FillColor = Color.Transparent;
                 this.mngPayment_BT.FillColor2 = Color.Transparent;
+                this.mngPayment2_BT.FillColor = Color.Transparent;
+                this.mngPayment2_BT.FillColor2 = Color.Transparent;
 
                 this.mngRooms_BT.FillColor = Color.FromArgb(0, 192, 192);
                 this.mngRooms_BT.FillColor2 = Color.Teal;
@@ -119,6 +123,8 @@ namespace QuanLiKhachSan
                 this.Check_in_out_BT.FillColor2 = Color.Transparent;
                 this.mngPayment_BT.FillColor = Color.Transparent;
                 this.mngPayment_BT.FillColor2 = Color.Transparent;
+                this.mngPayment2_BT.FillColor = Color.Transparent;
+                this.mngPayment2_BT.FillColor2 = Color.Transparent;
 
                 this.mngSchedules_BT.FillColor = Color.FromArgb(0, 192, 192);
                 this.mngSchedules_BT.FillColor2 = Color.Teal;
@@ -152,6 +158,8 @@ namespace QuanLiKhachSan
                 this.mngSchedules_BT.FillColor2 = Color.Transparent;
                 this.mngPayment_BT.FillColor = Color.Transparent;
                 this.mngPayment_BT.FillColor2 = Color.Transparent;
+                this.mngPayment2_BT.FillColor = Color.Transparent;
+                this.mngPayment2_BT.FillColor2 = Color.Transparent;
 
                 this.Check_in_out_BT.FillColor = Color.FromArgb(0, 192, 192);
                 this.Check_in_out_BT.FillColor2 = Color.Teal;
@@ -185,11 +193,13 @@ namespace QuanLiKhachSan
                 this.mngSchedules_BT.FillColor2 = Color.Transparent;
                 this.Check_in_out_BT.FillColor = Color.Transparent;
                 this.Check_in_out_BT.FillColor2 = Color.Transparent;
-
+                this.mngPayment2_BT.FillColor = Color.Transparent;
+                this.mngPayment2_BT.FillColor2 = Color.Transparent;
 
                 this.mngPayment_BT.FillColor = Color.FromArgb(0, 192, 192);
                 this.mngPayment_BT.FillColor2 = Color.Teal;
                 frm.Show();
+
             }
             else
             {
@@ -209,6 +219,50 @@ namespace QuanLiKhachSan
         {
             editInfoForm frm = new editInfoForm();
             frm.Show();
+        }
+
+        private void mngPayment2_BT_Click(object sender, EventArgs e)
+        {
+            mngPaymentInFormForManager frm = new mngPaymentInFormForManager();
+            this.Width = 1050;
+            this.Height = 455;
+            frm.MdiParent = this.ParentForm;
+            frm.TopLevel = false;
+            panel2.Controls.Clear();
+            panel2.Controls.Add(frm);
+            frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            if (this.mngPayment2_BT.FillColor == Color.Transparent && this.mngPayment_BT.FillColor2 == Color.Transparent)
+            {
+                this.employ_BT.FillColor = Color.Transparent;
+                this.employ_BT.FillColor2 = Color.Transparent;
+                this.mngRooms_BT.FillColor = Color.Transparent;
+                this.mngRooms_BT.FillColor2 = Color.Transparent;
+                this.mngSchedules_BT.FillColor = Color.Transparent;
+                this.mngSchedules_BT.FillColor2 = Color.Transparent;
+                this.Check_in_out_BT.FillColor = Color.Transparent;
+                this.Check_in_out_BT.FillColor2 = Color.Transparent;
+                this.mngPayment_BT.FillColor = Color.Transparent;
+                this.mngPayment_BT.FillColor2 = Color.Transparent;
+
+                this.mngPayment2_BT.FillColor = Color.FromArgb(0, 192, 192);
+                this.mngPayment2_BT.FillColor2 = Color.Teal;
+                frm.Show();
+                if(frm.payment_DGV.Rows.Count > 0)
+                {
+                    int sum_pay = 0;
+                    for (int i = 0; i < frm.payment_DGV.Rows.Count - 1; i++)
+                    {
+                        sum_pay += int.Parse(frm.payment_DGV.Rows[i].Cells[6].Value.ToString());
+                    }
+                    frm.payment_DGV.Rows[frm.payment_DGV.Rows.Count - 1].Cells[6].Value = sum_pay;
+                }
+            }
+            else
+            {
+                this.mngPayment2_BT.FillColor = Color.Transparent;
+                this.mngPayment2_BT.FillColor2 = Color.Transparent;
+            }
         }
     }
 }

@@ -66,5 +66,20 @@ namespace QuanLiKhachSan
             }
             reloadManageRoomsForm();
         }
+
+
+        private void room_DGV_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(room_DGV.CurrentRow.Cells[5].Value.ToString() == "Empty")
+            {
+                MessageBox.Show("This Room Dont' Have Guest.", "Check Info Guest", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Globals.SetGlobalRoomId(Convert.ToInt32(room_DGV.CurrentRow.Cells[0].Value));
+                GuestInfoForm frm = new GuestInfoForm();
+                frm.Show();
+            }
+        }
     }
 }

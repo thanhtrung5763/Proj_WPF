@@ -34,6 +34,7 @@ namespace QuanLiKhachSan
             this.mngPayment_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.Check_in_out_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.mngRooms_BT = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.mngSchedules_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.employ_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.guna2ControlBox3 = new Guna.UI2.WinForms.Guna2ControlBox();
@@ -44,7 +45,7 @@ namespace QuanLiKhachSan
             this.welcome_LB = new System.Windows.Forms.Label();
             this.avatar_PB = new System.Windows.Forms.PictureBox();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.mngSchedules_BT = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.mngPayment2_BT = new Guna.UI2.WinForms.Guna2GradientButton();
             this.panel1.SuspendLayout();
             this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatar_PB)).BeginInit();
@@ -53,6 +54,7 @@ namespace QuanLiKhachSan
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(36)))), ((int)(((byte)(39)))));
+            this.panel1.Controls.Add(this.mngPayment2_BT);
             this.panel1.Controls.Add(this.mngPayment_BT);
             this.panel1.Controls.Add(this.Check_in_out_BT);
             this.panel1.Controls.Add(this.mngRooms_BT);
@@ -80,7 +82,7 @@ namespace QuanLiKhachSan
             this.mngPayment_BT.ShadowDecoration.Parent = this.mngPayment_BT;
             this.mngPayment_BT.Size = new System.Drawing.Size(466, 69);
             this.mngPayment_BT.TabIndex = 9;
-            this.mngPayment_BT.Text = "Manager Payment";
+            this.mngPayment_BT.Text = "Manager Payment Out";
             this.mngPayment_BT.Click += new System.EventHandler(this.mngPayment_BT_Click);
             // 
             // Check_in_out_BT
@@ -120,6 +122,25 @@ namespace QuanLiKhachSan
             this.mngRooms_BT.TabIndex = 7;
             this.mngRooms_BT.Text = "Manage Rooms";
             this.mngRooms_BT.Click += new System.EventHandler(this.mngRooms_BT_Click);
+            // 
+            // mngSchedules_BT
+            // 
+            this.mngSchedules_BT.CheckedState.Parent = this.mngSchedules_BT;
+            this.mngSchedules_BT.CustomImages.Parent = this.mngSchedules_BT;
+            this.mngSchedules_BT.FillColor = System.Drawing.Color.Transparent;
+            this.mngSchedules_BT.FillColor2 = System.Drawing.Color.Transparent;
+            this.mngSchedules_BT.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.mngSchedules_BT.ForeColor = System.Drawing.Color.White;
+            this.mngSchedules_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.mngSchedules_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
+            this.mngSchedules_BT.HoverState.Parent = this.mngSchedules_BT;
+            this.mngSchedules_BT.Location = new System.Drawing.Point(0, 306);
+            this.mngSchedules_BT.Name = "mngSchedules_BT";
+            this.mngSchedules_BT.ShadowDecoration.Parent = this.mngSchedules_BT;
+            this.mngSchedules_BT.Size = new System.Drawing.Size(466, 69);
+            this.mngSchedules_BT.TabIndex = 6;
+            this.mngSchedules_BT.Text = "Manage Schedules";
+            this.mngSchedules_BT.Click += new System.EventHandler(this.mngSchedules_BT_Click);
             // 
             // employ_BT
             // 
@@ -248,24 +269,24 @@ namespace QuanLiKhachSan
             // 
             this.guna2Elipse1.TargetControl = this;
             // 
-            // mngSchedules_BT
+            // mngPayment2_BT
             // 
-            this.mngSchedules_BT.CheckedState.Parent = this.mngSchedules_BT;
-            this.mngSchedules_BT.CustomImages.Parent = this.mngSchedules_BT;
-            this.mngSchedules_BT.FillColor = System.Drawing.Color.Transparent;
-            this.mngSchedules_BT.FillColor2 = System.Drawing.Color.Transparent;
-            this.mngSchedules_BT.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.mngSchedules_BT.ForeColor = System.Drawing.Color.White;
-            this.mngSchedules_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.mngSchedules_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
-            this.mngSchedules_BT.HoverState.Parent = this.mngSchedules_BT;
-            this.mngSchedules_BT.Location = new System.Drawing.Point(0, 306);
-            this.mngSchedules_BT.Name = "mngSchedules_BT";
-            this.mngSchedules_BT.ShadowDecoration.Parent = this.mngSchedules_BT;
-            this.mngSchedules_BT.Size = new System.Drawing.Size(466, 69);
-            this.mngSchedules_BT.TabIndex = 6;
-            this.mngSchedules_BT.Text = "Manage Schedules";
-            this.mngSchedules_BT.Click += new System.EventHandler(this.mngSchedules_BT_Click);
+            this.mngPayment2_BT.CheckedState.Parent = this.mngPayment2_BT;
+            this.mngPayment2_BT.CustomImages.Parent = this.mngPayment2_BT;
+            this.mngPayment2_BT.FillColor = System.Drawing.Color.Transparent;
+            this.mngPayment2_BT.FillColor2 = System.Drawing.Color.Transparent;
+            this.mngPayment2_BT.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.mngPayment2_BT.ForeColor = System.Drawing.Color.White;
+            this.mngPayment2_BT.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.mngPayment2_BT.HoverState.FillColor2 = System.Drawing.Color.Teal;
+            this.mngPayment2_BT.HoverState.Parent = this.mngPayment2_BT;
+            this.mngPayment2_BT.Location = new System.Drawing.Point(0, 621);
+            this.mngPayment2_BT.Name = "mngPayment2_BT";
+            this.mngPayment2_BT.ShadowDecoration.Parent = this.mngPayment2_BT;
+            this.mngPayment2_BT.Size = new System.Drawing.Size(466, 69);
+            this.mngPayment2_BT.TabIndex = 10;
+            this.mngPayment2_BT.Text = "Manager Payment In";
+            this.mngPayment2_BT.Click += new System.EventHandler(this.mngPayment2_BT_Click);
             // 
             // ManagerForm
             // 
@@ -304,6 +325,7 @@ namespace QuanLiKhachSan
         private System.Windows.Forms.PictureBox avatar_PB;
         private System.Windows.Forms.LinkLabel edit_LLB;
         private Guna.UI2.WinForms.Guna2GradientButton mngSchedules_BT;
+        private Guna.UI2.WinForms.Guna2GradientButton mngPayment2_BT;
 
         #endregion
         //private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
